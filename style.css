@@ -525,10 +525,16 @@ body {
   .eng-slider { height: 320px; }
   .eng-slide-caption { font-size: 0.95rem; padding: 40px 14px 20px; }
   .eng-arrow { width: 38px; height: 38px; font-size: 1rem; }
+  .eng-dots { gap: 6px; bottom: 10px; }
+  .eng-dot { width: 12px; height: 3px; }
+  .eng-dot.active { width: 24px; }
 }
 @media (max-width: 480px) {
   .eng-slider { height: 240px; }
   .eng-date-badge { font-size: 0.65rem; padding: 5px 14px; }
+  .eng-dots { gap: 4px; }
+  .eng-dot { width: 8px; }
+  .eng-dot.active { width: 16px; }
 }
 
 
