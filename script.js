@@ -137,6 +137,68 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 console.log('🪷 Varsha & Akhil Wedding Website Loaded 🪷');
 
+// ===== ENGAGEMENT GALLERY SLIDER =====
+(function initEngagementSlider() {
+  const slider   = document.getElementById('engSlider');
+  const dotsWrap = document.getElementById('engDots');
+  const prevBtn  = document.getElementById('engPrev');
+  const nextBtn  = document.getElementById('engNext');
+  if (!slider) return;
+
+  const slides = slider.querySelectorAll('.eng-slide');
+  const dots   = dotsWrap ? dotsWrap.querySelectorAll('.eng-dot') : [];
+  let current  = 0;
+  let autoTimer = null;
+  const INTERVAL = 4000; // 4 seconds
+
+  function goTo(idx) {
+    slides[current].classList.remove('active');
+    if (dots[current]) dots[current].classList.remove('active');
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    if (dots[current]) dots[current].classList.add('active');
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  function startAuto() {
+    stopAuto();
+    autoTimer = setInterval(next, INTERVAL);
+  }
+  function stopAuto() {
+    if (autoTimer) clearInterval(autoTimer);
+  }
+
+  // Arrow buttons
+  if (nextBtn) nextBtn.addEventListener('click', () => { next(); startAuto(); });
+  if (prevBtn) prevBtn.addEventListener('click', () => { prev(); startAuto(); });
+
+  // Dot navigation
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      goTo(parseInt(dot.dataset.idx));
+      startAuto();
+    });
+  });
+
+  // Touch / swipe support
+  let touchStartX = 0;
+  slider.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  slider.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); startAuto(); }
+  }, { passive: true });
+
+  // Pause on hover
+  slider.addEventListener('mouseenter', stopAuto);
+  slider.addEventListener('mouseleave', startAuto);
+
+  // Kick off
+  startAuto();
+})();
+
+
 // ===== WATER FOUNTAIN ANIMATION =====
 (function initFountain() {
   const canvas = document.getElementById('fountainCanvas');
