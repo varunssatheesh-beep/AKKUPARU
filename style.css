@@ -590,13 +590,12 @@ body {
 }
 .ganesha-banner-img {
   position: absolute;
-  top: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 70px;
+  top: 60px;
+  right: 80px;
+  width: 130px;
   height: auto;
   z-index: 3;
-  opacity: 0.9;
+  opacity: 0.85;
   mix-blend-mode: screen;
   pointer-events: none;
 }
@@ -664,6 +663,7 @@ body {
 @media (max-width: 768px) {
   .venue-banner-img { height: 280px; }
   .venue-banner-content { padding: 0 28px; gap: 10px; }
+  .ganesha-banner-img { top: 20px; right: 20px; width: 60px; }
   .venue-banner-title { font-size: 1.6rem; }
   .portrait-frame { width: 160px; height: 240px; }
 }
