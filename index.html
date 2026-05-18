@@ -211,21 +211,24 @@
 
     <div class="eng-slider-wrapper reveal">
       <div class="eng-slider" id="engSlider">
-        <!-- Slides will be injected by JS based on images/engagement/ folder -->
-        <div class="eng-slide active">
-          <img src="images/engagement/eng1.jpg" alt="Engagement Ceremony - Bride" loading="lazy" />
+        <div class="eng-slide">
+          <div class="eng-slide-bg" style="background-image:url('images/engagement/eng1.jpg')"></div>
+          <img src="images/engagement/eng1.jpg" alt="Dr. Varsha S - Radiant in Gold" loading="lazy" />
           <div class="eng-slide-caption">Dr. Varsha S — Radiant in Gold 🌸</div>
         </div>
         <div class="eng-slide">
-          <img src="images/engagement/eng2.jpg" alt="Engagement Ceremony - Couple" loading="lazy" />
+          <div class="eng-slide-bg" style="background-image:url('images/engagement/eng2.jpg')"></div>
+          <img src="images/engagement/eng2.jpg" alt="Varsha and Akhil - Sacred Swing" loading="lazy" />
           <div class="eng-slide-caption">Together on the Sacred Swing 💞</div>
         </div>
         <div class="eng-slide">
-          <img src="images/engagement/eng3.jpg" alt="Engagement Ceremony - Ring Exchange" loading="lazy" />
+          <div class="eng-slide-bg" style="background-image:url('images/engagement/eng3.jpg')"></div>
+          <img src="images/engagement/eng3.jpg" alt="The Sacred Ring Exchange" loading="lazy" />
           <div class="eng-slide-caption">The Sacred Ring Exchange 💍</div>
         </div>
         <div class="eng-slide">
-          <img src="images/engagement/eng4.jpg" alt="Engagement Ceremony - Moment" loading="lazy" />
+          <div class="eng-slide-bg" style="background-image:url('images/engagement/eng4.jpg')"></div>
+          <img src="images/engagement/eng4.jpg" alt="Blessed by Family, Bound by Love" loading="lazy" />
           <div class="eng-slide-caption">Blessed by Family, Bound by Love 🪷</div>
         </div>
       </div>
@@ -234,7 +237,7 @@
       <button class="eng-arrow eng-prev" id="engPrev" aria-label="Previous">&#10094;</button>
       <button class="eng-arrow eng-next" id="engNext" aria-label="Next">&#10095;</button>
 
-      <!-- Dot Indicators -->
+      <!-- Dot / Progress Indicators -->
       <div class="eng-dots" id="engDots">
         <span class="eng-dot active" data-idx="0"></span>
         <span class="eng-dot" data-idx="1"></span>
@@ -242,8 +245,9 @@
         <span class="eng-dot" data-idx="3"></span>
       </div>
 
-      <!-- Date Badge -->
+      <!-- Date Badge & Counter -->
       <div class="eng-date-badge">💍 Engagement • October 18, 2025</div>
+      <div class="eng-counter" id="engCounter">1 / 4</div>
     </div>
   </section>
 

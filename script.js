@@ -137,26 +137,31 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 console.log('🪷 Varsha & Akhil Wedding Website Loaded 🪷');
 
-// ===== ENGAGEMENT GALLERY SLIDER =====
+// ===== ENGAGEMENT GALLERY SLIDER (Horizontal Slide) =====
 (function initEngagementSlider() {
-  const slider   = document.getElementById('engSlider');
+  const track   = document.getElementById('engSlider');
   const dotsWrap = document.getElementById('engDots');
   const prevBtn  = document.getElementById('engPrev');
   const nextBtn  = document.getElementById('engNext');
-  if (!slider) return;
+  const counter  = document.getElementById('engCounter');
+  if (!track) return;
 
-  const slides = slider.querySelectorAll('.eng-slide');
-  const dots   = dotsWrap ? dotsWrap.querySelectorAll('.eng-dot') : [];
-  let current  = 0;
-  let autoTimer = null;
-  const INTERVAL = 4000; // 4 seconds
+  const slides   = track.querySelectorAll('.eng-slide');
+  const dots     = dotsWrap ? dotsWrap.querySelectorAll('.eng-dot') : [];
+  const total    = slides.length;
+  let current    = 0;
+  let autoTimer  = null;
+  const INTERVAL = 4000;
 
   function goTo(idx) {
-    slides[current].classList.remove('active');
-    if (dots[current]) dots[current].classList.remove('active');
-    current = (idx + slides.length) % slides.length;
-    slides[current].classList.add('active');
-    if (dots[current]) dots[current].classList.add('active');
+    // clamp with wrap
+    current = (idx + total) % total;
+    // Slide the track
+    track.style.transform = `translateX(-${current * 100}%)`;
+    // Update dots
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    // Update counter
+    if (counter) counter.textContent = `${current + 1} / ${total}`;
   }
 
   function next() { goTo(current + 1); }
@@ -167,36 +172,39 @@ console.log('🪷 Varsha & Akhil Wedding Website Loaded 🪷');
     autoTimer = setInterval(next, INTERVAL);
   }
   function stopAuto() {
-    if (autoTimer) clearInterval(autoTimer);
+    if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
   }
 
-  // Arrow buttons
+  // Arrows
   if (nextBtn) nextBtn.addEventListener('click', () => { next(); startAuto(); });
   if (prevBtn) prevBtn.addEventListener('click', () => { prev(); startAuto(); });
 
-  // Dot navigation
+  // Dots
   dots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      goTo(parseInt(dot.dataset.idx));
-      startAuto();
-    });
+    dot.addEventListener('click', () => { goTo(+dot.dataset.idx); startAuto(); });
   });
 
-  // Touch / swipe support
-  let touchStartX = 0;
-  slider.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-  slider.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); startAuto(); }
+  // Touch / swipe
+  let tx = 0;
+  track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; stopAuto(); }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 45) dx < 0 ? next() : prev();
+    startAuto();
   }, { passive: true });
 
-  // Pause on hover
-  slider.addEventListener('mouseenter', stopAuto);
-  slider.addEventListener('mouseleave', startAuto);
+  // Pause on hover (desktop)
+  const wrapper = track.closest('.eng-slider-wrapper');
+  if (wrapper) {
+    wrapper.addEventListener('mouseenter', stopAuto);
+    wrapper.addEventListener('mouseleave', startAuto);
+  }
 
-  // Kick off
+  // Init
+  goTo(0);
   startAuto();
 })();
+
 
 
 // ===== WATER FOUNTAIN ANIMATION =====

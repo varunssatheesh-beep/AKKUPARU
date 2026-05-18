@@ -403,110 +403,132 @@ body {
 /* ===== ENGAGEMENT GALLERY SLIDER ===== */
 .eng-slider-wrapper {
   position: relative;
-  max-width: 960px;
+  max-width: 980px;
   margin: 0 auto;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 0 0 3px var(--gold), 0 0 0 12px rgba(201,168,76,0.12), 0 30px 70px rgba(123,13,30,0.3);
-}
-
-/* Wide 16:9 aspect ratio container */
-.eng-slider {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%; /* 16:9 */
-  height: 0;
-  overflow: hidden;
+  box-shadow: 0 0 0 3px var(--gold), 0 0 0 12px rgba(201,168,76,0.15),
+              0 30px 70px rgba(123,13,30,0.35);
   background: #0a0208;
+  user-select: none;
 }
 
-/* All slides stacked on top of each other, hidden by default */
+/* Track that slides horizontally */
+.eng-slider {
+  display: flex;
+  width: 100%;
+  height: 540px;
+  transition: transform 0.65s cubic-bezier(0.77, 0, 0.175, 1);
+  will-change: transform;
+}
+
+/* Each slide = full width of the wrapper */
 .eng-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Blurred background fill (for portrait/tall images) */
+.eng-slide-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(18px) brightness(0.45) saturate(1.2);
+  transform: scale(1.08);
+  z-index: 0;
+}
+
+/* The actual centred image on top */
+.eng-slide img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  opacity: 0;
-  transition: opacity 0.9s ease-in-out;
-  pointer-events: none;
-}
-.eng-slide.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Image fills the entire slide frame evenly */
-.eng-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  object-fit: contain;
+  object-position: center;
   display: block;
-  transform: scale(1.0);
-  transition: transform 7s ease;
+  z-index: 1;
 }
-.eng-slide.active img { transform: scale(1.05); }
 
-/* Caption gradient at bottom */
+/* Caption */
 .eng-slide-caption {
   position: absolute;
   bottom: 0; left: 0; right: 0;
   padding: 60px 32px 28px;
-  background: linear-gradient(to top, rgba(74,8,16,0.9) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(74,8,16,0.92) 0%, transparent 100%);
   color: var(--cream);
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.25rem; font-style: italic; letter-spacing: 1px;
+  font-size: 1.2rem; font-style: italic; letter-spacing: 1px;
   text-align: center;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+  z-index: 2;
 }
 
-/* Navigation Arrows */
+/* Navigation arrows */
 .eng-arrow {
   position: absolute; top: 50%; transform: translateY(-50%);
-  width: 46px; height: 46px;
-  background: rgba(74,8,16,0.72); backdrop-filter: blur(8px);
-  border: 1px solid rgba(201,168,76,0.45); border-radius: 50%;
-  color: var(--gold-light); font-size: 1.1rem;
-  cursor: pointer; z-index: 10;
+  width: 48px; height: 48px;
+  background: rgba(74,8,16,0.78); backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(201,168,76,0.5); border-radius: 50%;
+  color: var(--gold-light); font-size: 1.2rem;
+  cursor: pointer; z-index: 20;
   display: flex; align-items: center; justify-content: center;
-  transition: var(--transition); outline: none; line-height: 1;
+  transition: var(--transition); outline: none;
 }
 .eng-arrow:hover {
-  background: var(--maroon); border-color: var(--gold);
-  transform: translateY(-50%) scale(1.12);
+  background: var(--maroon-dark); border-color: var(--gold);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 16px rgba(201,168,76,0.3);
 }
-.eng-prev { left: 18px; }
-.eng-next { right: 18px; }
+.eng-prev { left: 16px; }
+.eng-next { right: 16px; }
 
 /* Dot indicators */
 .eng-dots {
-  position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%);
-  display: flex; gap: 10px; z-index: 10;
+  position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 10px; z-index: 20;
 }
 .eng-dot {
-  width: 9px; height: 9px; border-radius: 50%;
-  background: rgba(255,255,255,0.35); cursor: pointer;
-  transition: var(--transition); border: 1px solid rgba(255,255,255,0.25);
+  width: 28px; height: 4px; border-radius: 2px;
+  background: rgba(255,255,255,0.3); cursor: pointer;
+  transition: all 0.3s ease;
 }
 .eng-dot.active {
-  background: var(--gold); border-color: var(--gold); transform: scale(1.35);
+  background: var(--gold); width: 42px;
 }
 
 /* Date badge */
 .eng-date-badge {
   position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
-  background: rgba(74,8,16,0.82); backdrop-filter: blur(8px);
+  background: rgba(74,8,16,0.85); backdrop-filter: blur(10px);
   border: 1px solid rgba(201,168,76,0.5); border-radius: 30px;
-  color: var(--gold-light); padding: 6px 22px;
-  font-size: 0.75rem; letter-spacing: 2px; font-weight: 700;
-  white-space: nowrap; z-index: 10;
+  color: var(--gold-light); padding: 7px 22px;
+  font-size: 0.74rem; letter-spacing: 2px; font-weight: 700;
+  white-space: nowrap; z-index: 20;
+}
+
+/* Slide counter top-right */
+.eng-counter {
+  position: absolute; top: 16px; right: 16px;
+  background: rgba(0,0,0,0.5); backdrop-filter: blur(6px);
+  border-radius: 20px; padding: 4px 14px;
+  color: rgba(255,255,255,0.7); font-size: 0.8rem;
+  z-index: 20; letter-spacing: 1px;
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-  .eng-slide-caption { font-size: 1rem; padding: 40px 16px 20px; }
-  .eng-arrow { width: 38px; height: 38px; font-size: 0.9rem; }
-  .eng-dot { width: 8px; height: 8px; }
+  .eng-slider { height: 320px; }
+  .eng-slide-caption { font-size: 0.95rem; padding: 40px 14px 20px; }
+  .eng-arrow { width: 38px; height: 38px; font-size: 1rem; }
+}
+@media (max-width: 480px) {
+  .eng-slider { height: 240px; }
+  .eng-date-badge { font-size: 0.65rem; padding: 5px 14px; }
 }
 
 
