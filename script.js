@@ -466,8 +466,22 @@ console.log('🪷 Varsha & Akhil Wedding Website Loaded 🪷');
   const video = document.getElementById('engagementVideo');
   const placeholder = document.getElementById('videoPlaceholder');
   if (!video || !placeholder) return;
-  video.addEventListener('error', () => { placeholder.style.display = 'flex'; });
-  video.addEventListener('loadeddata', () => { placeholder.style.display = 'none'; });
-  if (video.readyState === 0) placeholder.style.display = 'flex';
+  
+  function hidePlaceholder() {
+    placeholder.style.display = 'none';
+  }
+  
+  video.addEventListener('canplay', hidePlaceholder);
+  video.addEventListener('loadeddata', hidePlaceholder);
+  video.addEventListener('play', hidePlaceholder);
+  
+  video.addEventListener('error', () => {
+    placeholder.style.display = 'flex';
+  });
+  
+  // If already loaded
+  if (video.readyState >= 1) {
+    hidePlaceholder();
+  }
 })();
 
