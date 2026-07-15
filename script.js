@@ -14,6 +14,26 @@
   }
 })();
 
+// ===== AMBIENT SOUNDSCAPE AUTOPLAY/MUTE CONTROLLER =====
+(function initAmbientAudio() {
+  const audio = document.getElementById('ambientAudio');
+  const btn = document.getElementById('audioToggleBtn');
+  if (!audio || !btn) return;
+
+  btn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play().then(() => {
+        btn.querySelector('.audio-icon').textContent = '🔊';
+        btn.classList.add('playing');
+      }).catch(err => console.error("Audio play blocked:", err));
+    } else {
+      audio.pause();
+      btn.querySelector('.audio-icon').textContent = '🔇';
+      btn.classList.remove('playing');
+    }
+  });
+})();
+
 // ===== COUNTDOWN TIMER =====
 function updateCountdown() {
   const wedding = new Date('2026-10-25T10:30:00+05:30').getTime();
@@ -25,8 +45,6 @@ function updateCountdown() {
     document.getElementById('cd-hours').textContent = '00';
     document.getElementById('cd-mins').textContent = '00';
     document.getElementById('cd-secs').textContent = '00';
-    const label = document.querySelector('.countdown-label');
-    if (label) label.textContent = '🎉 The celebrations have begun!';
     return;
   }
   const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -171,7 +189,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     cursor.style.top = e.clientY + 'px';
   });
 
-  const morphTriggers = 'a, button, input[type="submit"], textarea, input[type="text"], .eng-arrow, .eng-dot, .event-map-btn, .directions-btn, .guestbook-close';
+  const morphTriggers = 'a, button, input[type="submit"], textarea, input[type="text"], .eng-arrow, .eng-dot, .event-map-btn, .directions-btn, .guestbook-close, .carousel-control';
   document.querySelectorAll(morphTriggers).forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('morph-lotus'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('morph-lotus'));
@@ -208,11 +226,33 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 })();
 
-// ===== TIMELINE PROGRESS & VIEWPORT HIGHLIGHTER =====
+// ===== HORIZONTAL CAROUSEL SCROLLING CONTROLS =====
+(function initEventsCarousel() {
+  const track = document.getElementById('eventsCarousel');
+  const prevBtn = document.getElementById('carouselPrev');
+  const nextBtn = document.getElementById('carouselNext');
+  if (!track || !prevBtn || !nextBtn) return;
+
+  let currentTranslate = 0;
+  const cardWidth = 340; // card min-width + gap
+
+  nextBtn.addEventListener('click', () => {
+    const maxScroll = track.scrollWidth - track.parentElement.clientWidth;
+    currentTranslate = Math.min(currentTranslate + cardWidth, maxScroll);
+    track.style.transform = `translateX(-${currentTranslate}px)`;
+  });
+
+  prevBtn.addEventListener('click', () => {
+    currentTranslate = Math.max(currentTranslate - cardWidth, 0);
+    track.style.transform = `translateX(-${currentTranslate}px)`;
+  });
+})();
+
+// ===== LOVE JOURNEY TIMELINE TRACKER =====
 (function initTimelineTracker() {
-  const progressLine = document.getElementById('timelineProgress');
-  const timelineContainer = document.querySelector('.timeline-container');
-  const cards = document.querySelectorAll('.timeline-card');
+  const progressLine = document.getElementById('journeyProgress');
+  const timelineContainer = document.querySelector('.journey-timeline-container');
+  const cards = document.querySelectorAll('.journey-card');
 
   if (!timelineContainer) return;
 
@@ -232,9 +272,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       const cardCenter = cardRect.top + cardRect.height / 2;
       
       if (Math.abs(cardCenter - triggerY) < 140) {
-        card.classList.add('timeline-highlight');
+        card.classList.add('journey-highlight-card');
       } else {
-        card.classList.remove('timeline-highlight');
+        card.classList.remove('journey-highlight-card');
       }
     });
   });
@@ -297,7 +337,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       const response = await fetch('/api/blessings');
       const data = await response.json();
       
-      display.innerHTML = ''; // clear initial list
+      display.innerHTML = '';
       
       if (data.blessings && data.blessings.length > 0) {
         data.blessings.forEach(renderWish);
@@ -309,8 +349,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         `;
       }
     } catch (err) {
-      console.error("Failed to load blessings from database:", err);
-      // Fallback local display
+      console.error("Failed to load blessings:", err);
       display.innerHTML = `
         <div class="wish-card">
           <div class="wish-name">🌸 Adv. Satheesh Kumar S &amp; Mrs. Smitha S Nair</div>
@@ -336,7 +375,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
   }
 
-  // Submit Blessing to Database
+  // Submit Blessing
   if (form) {
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -366,13 +405,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const resData = await response.json();
         
         if (response.ok && resData.success) {
-          // Prepend new blessing
           renderWish(resData.blessing);
-          
-          // Trigger floating lotus petal burst animation
           triggerLotusBurst();
-
-          // Reset and close
           form.reset();
           modal.classList.remove('open');
         } else {
@@ -380,7 +414,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
       } catch (err) {
         console.error("API error:", err);
-        // Fallback local mock save if offline/not configured
         renderWish({ name: nameVal, relation: relationVal, message: msgVal });
         triggerLotusBurst();
         form.reset();
@@ -391,7 +424,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
   }
 
-  // Floating lotus burst particle effect
   function triggerLotusBurst() {
     const petals = ['🪷', '🌸', '✨', '💕', '🪷'];
     const burstCount = 35;
@@ -400,30 +432,25 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       const petal = document.createElement('div');
       petal.className = 'lotus-petal-particle';
       petal.textContent = petals[Math.floor(Math.random() * petals.length)];
-      
-      // Random coordinates starting from top center
       petal.style.left = Math.random() * 100 + 'vw';
       petal.style.top = '-50px';
       
-      const duration = Math.random() * 3 + 2; // 2-5 seconds
+      const duration = Math.random() * 3 + 2;
       petal.style.animationDuration = duration + 's';
       petal.style.animationDelay = Math.random() * 0.5 + 's';
       
-      // Random scale & rotation
       const scale = Math.random() * 0.8 + 0.6;
       petal.style.transform = `scale(${scale})`;
       
       document.body.appendChild(petal);
       
-      // Remove element when done
       setTimeout(() => {
         petal.remove();
       }, (duration + 1) * 1000);
     }
   }
 
-  // Load blessings on start
   loadBlessings();
 })();
 
-console.log('🪷 The Digital Temple Wedding Site Loaded successfully 🪷');
+console.log('🪷 The Royal Temple Wedding Site Loaded successfully 🪷');

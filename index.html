@@ -3,33 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Sacred Canvas | Varsha &amp; Akhil Wedding Invitation</title>
+  <title>The Royal Temple | Varsha &amp; Akhil Wedding Invitation</title>
   <meta name="description" content="Celebrate the wedding of Dr. Varsha S and Akhil P J on October 25, 2026. A digital temple to their love story." />
   <link rel="icon" type="image/jpeg" href="images/BRIDE.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Malayalam:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=12" />
+  <link rel="stylesheet" href="style.css?v=20" />
 </head>
 <body>
 
   <!-- Custom luxury golden dot cursor -->
   <div class="custom-cursor" id="customCursor"></div>
 
+  <!-- Ambient Soundscape Autoplay Control -->
+  <div class="audio-control-container">
+    <button id="audioToggleBtn" class="audio-toggle-btn" aria-label="Play/Mute Audio">
+      <span class="audio-icon">🔇</span>
+      <span class="audio-label">Soundscape</span>
+    </button>
+    <audio id="ambientAudio" loop preload="auto">
+      <source src="audio/ambient.mp3" type="audio/mp3">
+      <!-- Fallback high-quality royalty free temple flute/sitar music track -->
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mp3">
+    </audio>
+  </div>
+
   <!-- ===== NAVIGATION ===== -->
   <nav id="navbar">
-    <div class="nav-logo">🪷 THE SACRED CANVAS</div>
+    <div class="nav-logo">🪷 THE ROYAL TEMPLE</div>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu">☰</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="#hero">Home</a></li>
       <li><a href="#couple">Couple</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#pre-wedding">Pre-Wedding</a></li>
+      <li><a href="#events">Ceremonies</a></li>
+      <li><a href="#love-journey">Our Journey</a></li>
       <li><a href="#wishes">Guest Book</a></li>
     </ul>
   </nav>
 
-  <!-- ===== HERO SECTION (Immersive Cinematic Viewport) ===== -->
+  <!-- ===== HERO SECTION (Immersive Viewport) ===== -->
   <section id="hero">
     <!-- full-screen desaturated background video of waterfalls -->
     <div class="hero-video-container">
@@ -42,19 +56,14 @@
     <div class="particles" id="particles"></div>
 
     <div class="hero-content">
-      <!-- Minimalist gold SVG line-art Ganesha -->
+      <!-- Pristine high-resolution Lord Ganesha center top -->
       <div class="hero-ganesha">
-        <svg viewBox="0 0 100 100" class="ganesha-svg-line">
-          <path d="M50,12 C44,6 56,6 50,12 Z M50,12 C36,12 40,28 28,28 C20,28 16,33 22,40 C28,47 38,45 42,48 C44,51 38,62 42,75 C46,88 58,91 54,98" fill="none" stroke="#C9A961" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="ganesha-stroke" />
-          <path d="M50,12 C64,12 60,28 72,28 C80,28 84,33 78,40 C72,47 62,45 58,48 C56,51 62,62 58,75 C54,88 42,91 46,98" fill="none" stroke="#C9A961" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="ganesha-stroke" />
-          <path d="M44,22 C48,19 52,19 56,22" fill="none" stroke="#C9A961" stroke-width="1" class="ganesha-stroke" />
-          <circle cx="50" cy="18" r="1.5" fill="#C9A961" />
-        </svg>
+        <img src="images/ganesha.png" alt="Lord Ganesha" class="ganesha-img-center" />
       </div>
 
       <p class="sanskrit-blessing">ॐ श्री गणेशाय नमः</p>
 
-      <!-- Monumental Countdown Timer in gold, commanding absolute visual authority -->
+      <!-- Monumental Countdown Timer in gold with a pulsing celestial glow -->
       <div class="countdown-wrapper temple-hero-countdown">
         <div class="countdown" id="countdown">
           <div class="count-block-text">
@@ -108,6 +117,11 @@
         </a>
       </div>
     </div>
+
+    <div class="scroll-down" id="scrollDown">
+      <div class="scroll-arrow">▼</div>
+      <span>Scroll to Canvas</span>
+    </div>
   </section>
 
   <!-- ===== DUAL OVERLAPPING INFINITE SCROLLING MARQUEES ===== -->
@@ -124,7 +138,7 @@
     </div>
   </div>
 
-  <!-- ===== COUPLE SECTION (Grand Editorial Magazine Spreads) ===== -->
+  <!-- ===== COUPLE SECTION (Circular Frames, Parent Details Only) ===== -->
   <section id="couple" class="section">
     <div class="section-header">
       <div class="lotus-divider">🪷</div>
@@ -133,9 +147,9 @@
     </div>
     
     <div class="temple-couple-container">
-      <!-- Bride Spread (Massive Portrait Left) -->
+      <!-- Bride Spread (Circular Portrait Frame) -->
       <div class="temple-couple-spread bride-spread reveal">
-        <div class="temple-couple-photo-frame bride-frame">
+        <div class="temple-couple-photo-frame bride-frame circular-frame">
           <img src="images/BRIDE.jpg" alt="Dr. Varsha S - Bride" class="temple-couple-img" />
           <div class="temple-gold-border"></div>
         </div>
@@ -145,31 +159,250 @@
           <p class="couple-lineage">D/o Adv. Satheesh Kumar S &amp; Mrs. Smitha S Nair</p>
           <div class="line-divider"></div>
           <p class="couple-description">
-            A compassionate doctor and a radiant soul, Varsha brings warmth, grace, and light into every life she touches. She stands ready to cross the threshold into a beautiful union rooted in family traditions.
+            A compassionate doctor and a radiant daughter, Varsha brings warmth, grace, and light into every life she touches. She stands ready to cross the threshold into a beautiful union rooted in family traditions.
           </p>
         </div>
       </div>
 
-      <!-- Groom Spread (Massive Portrait Right) -->
+      <!-- Groom Spread (Circular Portrait Frame) -->
       <div class="temple-couple-spread groom-spread reveal">
-        <div class="temple-couple-photo-frame groom-frame">
+        <div class="temple-couple-photo-frame groom-frame circular-frame">
           <img src="images/GROOM.jpg" alt="Akhil P J - Groom" class="temple-couple-img" />
           <div class="temple-gold-border"></div>
         </div>
         <div class="temple-couple-info">
           <span class="temple-badge">The Groom</span>
           <h2 class="couple-title-name">Akhil P J</h2>
-          <p class="couple-lineage">S/o Mr. Pradeep Kumar &amp; Mrs. Jayasree O</p>
+          <p class="couple-lineage">S/o Mr. Pradeep Kumar R &amp; Mrs. Jayasree O</p>
+          <span class="groom-job-tag">IT Sector • Infosys</span>
           <div class="line-divider"></div>
           <p class="couple-description">
-            A software engineer with a kind, analytical mind and a strong spirit, Akhil is prepared to embark on this lifelong partnership of love, laughter, and mutual growth with his beautiful bride.
+            Working in the IT sector at Infosys, Akhil brings a sharp mind and a caring heart. He is prepared to embark on this lifetime journey of partnership and mutual growth with his beautiful bride.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== ENGAGEMENT STORY ===== -->
+  <!-- ===== PRE-WEDDING EVENTS SECTION (Special Invitees Only) ===== -->
+  <section id="pre-wedding" class="section section-prewedding">
+    <div class="section-header">
+      <div class="lotus-divider">🪷</div>
+      <h2 class="section-title">Pre-Wedding Celebrations</h2>
+      <p class="section-sub">Private Sacred Ceremonies</p>
+    </div>
+    
+    <div class="pre-wedding-grid">
+      <!-- Haldi & Mehendi coming soon card -->
+      <div class="pre-wedding-card reveal">
+        <div class="pre-card-badge">Special Invitees Only</div>
+        <div class="pre-card-icon">🌿</div>
+        <h3 class="pre-card-title">Haldi &amp; Mehendi</h3>
+        <p class="pre-card-text">Traditional turmeric paste ceremony and intricate henna design celebration for the bride.</p>
+        <div class="pre-card-footer">
+          <span class="pre-status">To Be Announced</span>
+        </div>
+      </div>
+
+      <!-- Sangeet coming soon card -->
+      <div class="pre-wedding-card reveal">
+        <div class="pre-card-badge">Special Invitees Only</div>
+        <div class="pre-card-icon">💃</div>
+        <h3 class="pre-card-title">Sangeet &amp; Dance</h3>
+        <p class="pre-card-text">An evening of music, dance, and celebration with close family members and friends.</p>
+        <div class="pre-card-footer">
+          <span class="pre-status">To Be Announced</span>
+        </div>
+      </div>
+
+      <!-- Bride to be party coming soon card -->
+      <div class="pre-wedding-card reveal">
+        <div class="pre-card-badge">Special Invitees Only</div>
+        <div class="pre-card-icon">🥂</div>
+        <h3 class="pre-card-title">Bride-to-Be Party</h3>
+        <p class="pre-card-text">A private celebration to shower our beautiful bride with blessings and laughter.</p>
+        <div class="pre-card-footer">
+          <span class="pre-status">To Be Announced</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HORIZONTAL SCROLL CAROUSEL EVENTS ===== -->
+  <section id="events" class="section section-alt">
+    <div class="section-header">
+      <div class="lotus-divider">🪷</div>
+      <h2 class="section-title">The Ceremonies</h2>
+      <p class="section-sub">Join us for every sacred moment</p>
+    </div>
+
+    <div class="carousel-outer-container">
+      <button class="carousel-control prev-slide" id="carouselPrev" aria-label="Previous Slide">‹</button>
+      
+      <div class="events-carousel-wrapper">
+        <div class="events-carousel-track" id="eventsCarousel">
+          
+          <!-- 1. Bride Reception -->
+          <div class="carousel-card main-event reveal">
+            <div class="card-venue-img"><img src="images/venue.jpg" alt="RDR Convention Centre" /></div>
+            <div class="card-header-block">
+              <span class="card-badge">Public Event</span>
+              <div class="event-massive-date highlighted-date">OCT 24</div>
+              <h3 class="event-name">Bride's Reception</h3>
+            </div>
+            <div class="card-body-block">
+              <p class="event-time">⏰ 4:30 PM – 9:30 PM</p>
+              <p class="event-venue">📍 RDR Convention Centre, Mini Hall</p>
+              <p class="event-location">Edappazhinji, Thiruvananthapuram</p>
+              <p class="mapped-distance">🚗 Distance from Temple: ~3.8 km</p>
+            </div>
+            <div class="card-actions-block">
+              <a href="https://maps.app.goo.gl/YhMqnr7tsKcxkpPFA" target="_blank" class="event-map-btn">🗺️ Navigate Location</a>
+            </div>
+          </div>
+
+          <!-- 2. Thalikettu -->
+          <div class="carousel-card sacred-event reveal">
+            <div class="card-venue-img"><img src="images/venue.jpg" alt="Sree Udiyanoor Devi Temple" style="filter: sepia(30%)" /></div>
+            <div class="card-header-block">
+              <span class="card-badge">Family Event</span>
+              <div class="event-massive-date highlighted-date-gold">OCT 25</div>
+              <h3 class="event-name">Thalikettu</h3>
+            </div>
+            <div class="card-body-block">
+              <p class="event-time">⏰ 10:30 AM</p>
+              <p class="event-venue">🛕 Sree Udiyanoor Devi Temple</p>
+              <p class="event-location">Maruthankuzhy, Thiruvananthapuram</p>
+              <p class="mapped-distance">🚗 Central Auspicious Ceremony</p>
+            </div>
+            <div class="card-actions-block">
+              <p class="event-note">The holiest moment of tying the Thali.</p>
+            </div>
+          </div>
+
+          <!-- 3. Grand Wedding -->
+          <div class="carousel-card main-event highlight-event reveal">
+            <div class="card-venue-img"><img src="images/venue.jpg" alt="RDR Convention Centre" /></div>
+            <div class="card-header-block">
+              <span class="card-badge">Grand Celebration</span>
+              <div class="event-massive-date highlighted-date-gold">OCT 25</div>
+              <h3 class="event-name">Grand Wedding</h3>
+            </div>
+            <div class="card-body-block">
+              <p class="event-time">⏰ 10:30 AM onwards</p>
+              <p class="event-venue">📍 RDR Convention Centre</p>
+              <p class="event-location">Edappazhinji, Thiruvananthapuram</p>
+              <p class="mapped-distance">🚗 Distance from Temple: ~3.8 km</p>
+            </div>
+            <div class="card-actions-block">
+              <a href="https://maps.app.goo.gl/YhMqnr7tsKcxkpPFA" target="_blank" class="event-map-btn gold-btn">🗺️ Navigate Location</a>
+            </div>
+          </div>
+
+          <!-- 4. Maruveed Ceremony -->
+          <div class="carousel-card personal-event reveal">
+            <div class="card-venue-img"><img src="images/venue-rk.jpg" alt="RK Convention Centre" /></div>
+            <div class="card-header-block">
+              <span class="card-badge">Special Invitees</span>
+              <div class="event-massive-date">OCT 26</div>
+              <h3 class="event-name">Maruveed Ceremony</h3>
+            </div>
+            <div class="card-body-block">
+              <p class="event-venue">📍 RK Convention Centre</p>
+              <p class="event-location">Mailom, Kollam</p>
+              <p class="mapped-distance">🚗 Private Homecoming Ceremony</p>
+            </div>
+            <div class="card-actions-block">
+              <p class="event-note">Homecoming celebrations for the newlyweds.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="carousel-control next-slide" id="carouselNext" aria-label="Next Slide">›</button>
+    </div>
+  </section>
+
+  <!-- ===== LOVE STORY TIMELINE SECTION (The Star of the Show) ===== -->
+  <section id="love-journey" class="section">
+    <div class="section-header">
+      <div class="lotus-divider">🪷</div>
+      <h2 class="section-title">Our Journey</h2>
+      <p class="section-sub">Milestones Written in the Stars</p>
+    </div>
+
+    <div class="journey-timeline-container">
+      <div class="journey-timeline-line">
+        <div class="journey-progress" id="journeyProgress"></div>
+      </div>
+
+      <!-- 1. First Meet -->
+      <div class="journey-item left reveal">
+        <div class="journey-marker">🛕</div>
+        <div class="journey-card">
+          <span class="journey-date">June 22, 2025</span>
+          <h3 class="journey-title">First Meet</h3>
+          <p class="journey-location">📍 Sree Udiyanoor Devi Temple</p>
+          <p class="journey-desc">Two paths crossed under the divine blessings of the Goddess. The beginning of a lifetime bond.</p>
+        </div>
+      </div>
+
+      <!-- 2. Pennukanal -->
+      <div class="journey-item right reveal">
+        <div class="journey-marker">🌸</div>
+        <div class="journey-card">
+          <span class="journey-date">June 29, 2025</span>
+          <h3 class="journey-title">Official Pennukanal</h3>
+          <p class="journey-desc">A beautiful traditional custom where families met, blessings were shared, and smiles aligned.</p>
+        </div>
+      </div>
+
+      <!-- 3. Urappikal -->
+      <div class="journey-item left reveal">
+        <div class="journey-marker">🤝</div>
+        <div class="journey-card">
+          <span class="journey-date">July 2025</span>
+          <h3 class="journey-title">Urappikal Ceremony</h3>
+          <p class="journey-desc">The official word was given. Both families unitedly decided to bind their children in holy matrimony.</p>
+        </div>
+      </div>
+
+      <!-- 4. Valayidal -->
+      <div class="journey-item right reveal">
+        <div class="journey-marker">✨</div>
+        <div class="journey-card">
+          <span class="journey-date">August 24, 2025</span>
+          <h3 class="journey-title">Valayidal Ceremony</h3>
+          <p class="journey-desc">The sacred gold bangles were presented, symbolizing the official welcome of the bride-to-be.</p>
+        </div>
+      </div>
+
+      <!-- 5. Engagement -->
+      <div class="journey-item left reveal">
+        <div class="journey-marker">💍</div>
+        <div class="journey-card">
+          <span class="journey-date">October 18, 2025</span>
+          <h3 class="journey-title">The Engagement</h3>
+          <p class="journey-desc">Rings were exchanged, promises made, and forever began in the presence of family and friends.</p>
+        </div>
+      </div>
+
+      <!-- 6. Marriage -->
+      <div class="journey-item right reveal">
+        <div class="journey-marker">🪷</div>
+        <div class="journey-card journey-highlight-card">
+          <span class="journey-date">October 25, 2026</span>
+          <h3 class="journey-title">The Marriage</h3>
+          <p class="journey-location">📍 RDR Convention Centre</p>
+          <p class="journey-desc">Dr. Varsha and Akhil tie the knot in a grand ceremony, stepping into a lifetime of shared dreams.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== POETIC INTERSECTING STORY ===== -->
   <section id="love-story" class="section">
     <div class="section-header">
       <div class="lotus-divider">🪷</div>
@@ -321,124 +554,11 @@
     </div>
   </section>
 
-  <!-- ===== CELEBRATIONS TIMELINE (Center Gold Path Line) ===== -->
-  <section id="events" class="section section-alt">
-    <div class="section-header">
-      <div class="lotus-divider">🪷</div>
-      <h2 class="section-title">Celebrations</h2>
-      <p class="section-sub">Join us for every sacred moment</p>
-    </div>
-
-    <div class="timeline-container">
-      <div class="timeline-line">
-        <div class="timeline-progress" id="timelineProgress"></div>
-      </div>
-
-      <!-- 1. Bride to Be Party -->
-      <div class="timeline-item left reveal">
-        <div class="timeline-marker"></div>
-        <div class="timeline-card personal-event">
-          <div class="event-badge">Special Invitees Only</div>
-          <div class="event-icon">🥂</div>
-          <div class="event-massive-date">OCT 22</div>
-          <h3 class="event-name">Bride To Be Party</h3>
-          <div class="event-details">
-            <p class="event-venue">🏡 Bride's House</p>
-            <p class="event-note">A private celebration to shower our bride with love!</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2. Haldi & Mehendi -->
-      <div class="timeline-item right reveal">
-        <div class="timeline-marker"></div>
-        <div class="timeline-card personal-event">
-          <div class="event-badge">Special Invitees Only</div>
-          <div class="event-icon">🌿</div>
-          <div class="event-massive-date">OCT 23</div>
-          <h3 class="event-name">Haldi &amp; Mehendi</h3>
-          <div class="event-details">
-            <p class="event-venue">🏡 Bride's House</p>
-            <p class="event-note">Sacred turmeric and intricate henna adorn the bride.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3. Bride Reception (Oct 24) -->
-      <div class="timeline-item left reveal">
-        <div class="timeline-marker"></div>
-        <div class="timeline-card main-event">
-          <div class="event-venue-img"><img src="images/venue.jpg" alt="RDR Convention Centre" /></div>
-          <div class="event-icon">👗</div>
-          <div class="event-massive-date highlighted-date">OCT 24</div>
-          <h3 class="event-name">Bride's Reception</h3>
-          <div class="event-details">
-            <p class="event-time">⏰ 4:30 PM – 9:30 PM</p>
-            <p class="event-venue">📍 RDR Convention Centre, Mini Hall</p>
-            <p class="event-location">Edappazhinji, Thiruvananthapuram</p>
-            <a href="https://maps.app.goo.gl/YhMqnr7tsKcxkpPFA" target="_blank" class="event-map-btn">🗺️ Get Directions</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4. Thalikettu (Oct 25) -->
-      <div class="timeline-item right reveal">
-        <div class="timeline-marker"></div>
-        <div class="timeline-card sacred-event">
-          <div class="event-badge">Personal Event</div>
-          <div class="event-icon">🪷</div>
-          <div class="event-massive-date highlighted-date">OCT 25</div>
-          <h3 class="event-name">Thalikettu Ceremony</h3>
-          <div class="event-details">
-            <p class="event-time">⏰ 10:30 AM</p>
-            <p class="event-venue">🛕 Sree Udiyanoor Devi Temple</p>
-            <p class="event-location">Maruthankuzhy, Thiruvananthapuram</p>
-            <p class="event-note">The sacred tying of the Thali — the holiest moment.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5. Grand Wedding (Oct 25) -->
-      <div class="timeline-item left reveal">
-        <div class="timeline-marker"></div>
-        <div class="timeline-card main-event highlight-event">
-          <div class="event-venue-img highlight-venue"><img src="images/venue.jpg" alt="RDR Convention Centre" /></div>
-          <div class="event-icon">💍</div>
-          <div class="event-massive-date highlighted-date-gold">OCT 25</div>
-          <h3 class="event-name">Grand Wedding</h3>
-          <div class="event-details">
-            <p class="event-time">⏰ 10:30 AM onwards</p>
-            <p class="event-venue">📍 RDR Convention Centre</p>
-            <p class="event-location">Edappazhinji, Thiruvananthapuram</p>
-            <a href="https://maps.app.goo.gl/YhMqnr7tsKcxkpPFA" target="_blank" class="event-map-btn gold-btn">🗺️ Get Directions</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 6. Maruveed Ceremony (Oct 26) -->
-      <div class="timeline-item right reveal">
-        <div class="timeline-marker"></div>
-        <div class="timeline-card personal-event">
-          <div class="event-venue-img rk-venue-img"><img src="images/venue-rk.jpg" alt="RK Convention Centre, Mailom" /></div>
-          <div class="event-badge">Special Invitees Only</div>
-          <div class="event-icon">🎊</div>
-          <div class="event-massive-date">OCT 26</div>
-          <h3 class="event-name">Maruveed Ceremony</h3>
-          <div class="event-details">
-            <p class="event-venue">📍 RK Convention Centre</p>
-            <p class="event-location">Mailom, Kollam</p>
-            <p class="event-note">A cherished homecoming ceremony for the newlyweds.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FAMILY SECTION ===== -->
+  <!-- ===== FAMILY SECTION (Parents Only, Clean Presentation) ===== -->
   <section id="family" class="section">
     <div class="section-header">
       <div class="lotus-divider">🪷</div>
-      <h2 class="section-title">Our Families</h2>
+      <h2 class="section-title">Our Parents</h2>
       <p class="section-sub">Two families, one beautiful union</p>
     </div>
 
@@ -447,7 +567,7 @@
       <div class="family-card reveal">
         <div class="family-card-header bride-header">
           <div class="family-icon">👰</div>
-          <h3>Bride's Family</h3>
+          <h3>Bride's Parents</h3>
           <p class="family-name-title">Dr. Varsha S</p>
         </div>
         <div class="family-members">
@@ -459,24 +579,6 @@
             <span class="member-role">Mother</span>
             <span class="member-name">Mrs. Smitha S Nair</span>
           </div>
-          <div class="member-divider">— Maternal Side —</div>
-          <div class="member">
-            <span class="member-role">Grandfather</span>
-            <span class="member-name">Mr. Sreekandan Nair <em class="late-tag">(Late)</em></span>
-          </div>
-          <div class="member">
-            <span class="member-role">Grandmother</span>
-            <span class="member-name">Mrs. Usha <em class="late-tag">(Late)</em></span>
-          </div>
-          <div class="member-divider">— Paternal Side —</div>
-          <div class="member">
-            <span class="member-role">Grandfather</span>
-            <span class="member-name">Mr. Sukumaran Nair</span>
-          </div>
-          <div class="member">
-            <span class="member-role">Grandmother</span>
-            <span class="member-name">Mrs. Sarassamma T</span>
-          </div>
         </div>
       </div>
 
@@ -484,26 +586,17 @@
       <div class="family-card reveal">
         <div class="family-card-header groom-header">
           <div class="family-icon">🤵</div>
-          <h3>Groom's Family</h3>
+          <h3>Groom's Parents</h3>
           <p class="family-name-title">Akhil P J</p>
         </div>
         <div class="family-members">
           <div class="member">
             <span class="member-role">Father</span>
-            <span class="member-name">Mr. Pradeep Kumar</span>
+            <span class="member-name">Mr. Pradeep Kumar R</span>
           </div>
           <div class="member">
             <span class="member-role">Mother</span>
             <span class="member-name">Mrs. Jayasree O</span>
-          </div>
-          <div class="member-divider">— Grandparents —</div>
-          <div class="member">
-            <span class="member-role">Grandfather</span>
-            <span class="member-name coming-soon">To Be Updated</span>
-          </div>
-          <div class="member">
-            <span class="member-role">Grandmother</span>
-            <span class="member-name coming-soon">To Be Updated</span>
           </div>
         </div>
       </div>
@@ -561,7 +654,7 @@
 
       <!-- Live blessings display container -->
       <div class="wishes-display" id="wishesDisplay">
-        <!-- Dynmic database blessings load here -->
+        <!-- Dynamic database blessings load here -->
       </div>
     </div>
   </section>
@@ -621,7 +714,7 @@
             <div class="qr-corner qr-br"></div>
             <a href="https://maps.app.goo.gl/YhMqnr7tsKcxkpPFA" target="_blank">
               <img
-                src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://maps.app.goo.gl/YhMqnr7tsKcxkpPFA&color=4A1728&bgcolor=FFFDF9&margin=10"
+                src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://maps.app.goo.gl/YhMqnr7tsKcxkpPFA&color=0B1B3D&bgcolor=FFFDF9&margin=10"
                 alt="QR Code - RDR Convention Centre Directions"
                 class="qr-img"
               />
@@ -638,7 +731,6 @@
 
   <!-- ===== FOOTER (Watermark Shloka) ===== -->
   <footer id="footer">
-    <!-- Faint 4% opacity watermark Sanskrit Shloka in the background -->
     <div class="footer-shloka-watermark">
       यत्र नार्यस्तु पूज्यन्ते रमन्ते तत्र देवताः
     </div>
@@ -661,6 +753,6 @@
     </p>
   </footer>
 
-  <script src="script.js?v=12"></script>
+  <script src="script.js?v=20"></script>
 </body>
 </html>
