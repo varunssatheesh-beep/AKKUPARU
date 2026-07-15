@@ -23,15 +23,13 @@
       <span class="audio-label">Soundscape</span>
     </button>
     <audio id="ambientAudio" loop preload="auto">
-      <source src="audio/ambient.mp3" type="audio/mp3">
-      <!-- Fallback high-quality royalty free temple flute/sitar music track -->
-      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mp3">
+      <source src="Ringtone/sita-kalyana-vaibhogame.mp3" type="audio/mp3">
     </audio>
   </div>
 
   <!-- ===== NAVIGATION ===== -->
   <nav id="navbar">
-    <div class="nav-logo">🪷 THE ROYAL TEMPLE</div>
+    <div class="nav-logo">🪷 Dr. Varsha S weds Akhil P J</div>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu">☰</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="#hero">Home</a></li>
@@ -47,9 +45,12 @@
   <section id="hero">
     <!-- full-screen desaturated background video of waterfalls -->
     <div class="hero-video-container">
-      <video autoplay loop muted playsinline class="hero-video-bg">
-        <source src="videos/waterfalls.mp4" type="video/mp4">
-      </video>
+      <iframe src="https://www.youtube.com/embed/TeO374JpPWk?autoplay=1&mute=1&controls=0&loop=1&playlist=TeO374JpPWk&playsinline=1&enablejsapi=1&showinfo=0&rel=0&iv_load_policy=3" 
+              frameborder="0" 
+              allow="autoplay; encrypted-media" 
+              allowfullscreen 
+              class="hero-video-bg youtube-bg">
+      </iframe>
       <div class="hero-video-overlay"></div>
     </div>
     
@@ -124,6 +125,19 @@
     </div>
   </section>
 
+  <!-- ===== DUAL OVERLAPPING INFINITE SCROLLING MARQUEES ===== -->
+  <div class="dual-marquees-container">
+    <div class="marquee-ribbon ribbon-top">
+      <div class="marquee-track-l2r" id="marqueeTop">
+        <span>SHUBH VIVAH ✦ DR. VARSHA S &amp; AKHIL P J ✦ OCTOBER 25, 2026 ✦ SHUBH VIVAH ✦ DR. VARSHA S &amp; AKHIL P J ✦ OCTOBER 25, 2026 ✦ SHUBH VIVAH ✦ DR. VARSHA S &amp; AKHIL P J ✦ OCTOBER 25, 2026 ✦</span>
+      </div>
+    </div>
+    <div class="marquee-ribbon ribbon-bottom">
+      <div class="marquee-track-r2l" id="marqueeBottom">
+        <span>RDR CONVENTION CENTRE ✦ TRIVANDRUM ✦ BLESSINGS &amp; LOVE ✦ RDR CONVENTION CENTRE ✦ TRIVANDRUM ✦ BLESSINGS &amp; LOVE ✦ RDR CONVENTION CENTRE ✦ TRIVANDRUM ✦ BLESSINGS &amp; LOVE ✦</span>
+      </div>
+    </div>
+  </div>
 
   <!-- ===== COUPLE SECTION (Circular Frames, Parent Details Only) ===== -->
   <section id="couple" class="section">
@@ -715,20 +729,6 @@
       </div>
     </div>
   </section>
-
-  <!-- ===== DUAL OVERLAPPING INFINITE SCROLLING MARQUEES ===== -->
-  <div class="dual-marquees-container">
-    <div class="marquee-ribbon ribbon-top">
-      <div class="marquee-track-l2r" id="marqueeTop">
-        <span>SHUBH VIVAH ✦ DR. VARSHA S &amp; AKHIL P J ✦ OCTOBER 25, 2026 ✦ SHUBH VIVAH ✦ DR. VARSHA S &amp; AKHIL P J ✦ OCTOBER 25, 2026 ✦ SHUBH VIVAH ✦ DR. VARSHA S &amp; AKHIL P J ✦ OCTOBER 25, 2026 ✦</span>
-      </div>
-    </div>
-    <div class="marquee-ribbon ribbon-bottom">
-      <div class="marquee-track-r2l" id="marqueeBottom">
-        <span>RDR CONVENTION CENTRE ✦ TRIVANDRUM ✦ BLESSINGS &amp; LOVE ✦ RDR CONVENTION CENTRE ✦ TRIVANDRUM ✦ BLESSINGS &amp; LOVE ✦ RDR CONVENTION CENTRE ✦ TRIVANDRUM ✦ BLESSINGS &amp; LOVE ✦</span>
-      </div>
-    </div>
-  </div>
 
   <!-- ===== FOOTER (Watermark Shloka) ===== -->
   <footer id="footer">

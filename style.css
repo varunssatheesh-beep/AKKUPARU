@@ -148,6 +148,15 @@ h1, h2, h3, .font-serif {
   pointer-events: none; filter: sepia(20%) brightness(0.4) contrast(1.1);
   transform: scale(1.02);
 }
+.hero-video-container iframe.youtube-bg {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 100vw; height: 56.25vw;
+  min-height: 100vh; min-width: 177.77vh;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  filter: sepia(20%) brightness(0.4) contrast(1.1);
+}
 .hero-video-overlay {
   position: absolute; inset: 0;
   background: linear-gradient(to bottom, rgba(11, 27, 61, 0.6) 0%, rgba(11, 27, 61, 0.85) 100%);
