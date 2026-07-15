@@ -14,24 +14,26 @@
   }
 })();
 
-// ===== AMBIENT SOUNDSCAPE - starts muted via HTML autoplay, unmutes on first interaction =====
+// ===== AMBIENT SOUNDSCAPE =====
+// iOS Safari ONLY allows audio.play() when called synchronously inside
+// a touchstart or click handler. This is the only approach that works.
 (function initAmbientAudio() {
-  const audio = document.getElementById('ambientAudio');
+  var audio = document.getElementById('ambientAudio');
   if (!audio) return;
 
-  function unlock() {
-    audio.muted = false;
-    audio.play().catch(() => {});
-    document.removeEventListener('touchstart', unlock, true);
-    document.removeEventListener('click',      unlock, true);
-    document.removeEventListener('scroll',     unlock, true);
+  var started = false;
+
+  function startAudio() {
+    if (started) return;
+    started = true;
+    audio.play().catch(function() { started = false; });
+    document.removeEventListener('touchstart', startAudio, true);
+    document.removeEventListener('click', startAudio, true);
   }
 
-  // If muted autoplay already running, just wait for interaction to unmute
-  // If autoplay was blocked entirely, play() will start it on the first touch/click
-  document.addEventListener('touchstart', unlock, { once: true, passive: true, capture: true });
-  document.addEventListener('click',      unlock, { once: true, passive: true, capture: true });
-  document.addEventListener('scroll',     unlock, { once: true, passive: true, capture: true });
+  // capture:true ensures we fire BEFORE any other handler, staying inside the user gesture
+  document.addEventListener('touchstart', startAudio, { capture: true, passive: true });
+  document.addEventListener('click',      startAudio, { capture: true, passive: true });
 })();
 
 // ===== COUNTDOWN TIMER =====
