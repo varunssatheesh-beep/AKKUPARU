@@ -17,54 +17,25 @@
 // ===== AMBIENT SOUNDSCAPE =====
 (function initAmbientAudio() {
   var audio = document.getElementById('ambientAudio');
+  var btn   = document.getElementById('musicStartBtn');
   if (!audio) return;
 
-  var played = false;
-
-  function doPlay() {
-    if (played) return;
-    var p = audio.play();
-    if (p !== undefined) {
-      p.then(function() {
-        played = true;
-        hideMusicBtn();
-      }).catch(function() {
-        // Blocked — show the tap button
-        showMusicBtn();
-      });
-    } else {
-      played = true;
-    }
+  function startMusic() {
+    audio.play().then(function() {
+      // Music playing — hide the button
+      if (btn) btn.style.display = 'none';
+    }).catch(function() {});
   }
 
-  function showMusicBtn() {
-    var btn = document.getElementById('musicStartBtn');
-    if (btn) btn.style.display = 'flex';
-  }
-
-  function hideMusicBtn() {
-    var btn = document.getElementById('musicStartBtn');
-    if (btn) btn.style.display = 'none';
-  }
-
-  // Try immediately (works on Chrome desktop if user has prior engagement)
-  doPlay();
-
-  // Also try on first interaction (works everywhere)
-  document.addEventListener('touchstart', doPlay, { capture: true, passive: true, once: true });
-  document.addEventListener('click',      doPlay, { capture: true, passive: true, once: true });
-
-  // Tap button click (last resort visible button)
-  var btn = document.getElementById('musicStartBtn');
+  // Button tap — guaranteed to work everywhere
   if (btn) {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      audio.play().then(function() {
-        played = true;
-        hideMusicBtn();
-      }).catch(function() {});
+    btn.addEventListener('click', function() {
+      startMusic();
     });
   }
+
+  // Also try silently on load (works on Chrome desktop with prior engagement)
+  startMusic();
 })();
 
 // ===== COUNTDOWN TIMER =====
