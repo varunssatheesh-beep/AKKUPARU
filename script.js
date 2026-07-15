@@ -19,28 +19,39 @@
   const audio = document.getElementById('ambientAudio');
   if (!audio) return;
 
-  function tryUnmutedPlay() {
+  // Force audio element state to match muted attribute initially
+  audio.muted = true;
+
+  function tryAutoplay() {
+    // Try unmuted play first
     audio.play().then(() => {
-      console.log("Successfully played unmuted audio!");
+      console.log("Successfully played unmuted audio on load!");
     }).catch(err => {
-      console.log("Unmuted autoplay blocked, trying muted autoplay...");
-      // Play muted immediately so it starts loading and playing
+      console.log("Unmuted autoplay blocked on load. Trying muted autoplay...");
+      // Try playing muted (all browsers support muted autoplay)
       audio.muted = true;
       audio.play().then(() => {
-        console.log("Muted audio is playing. Waiting for user interaction to unmute...");
-        // Add single-time listener to unmute on user interaction
+        console.log("Muted autoplay started. Listening for user action to unmute...");
         bindUnmuteListeners();
       }).catch(err2 => {
-        console.error("Muted play failed too:", err2);
+        console.log("Muted autoplay blocked too. Listening for user action to play & unmute...");
+        bindPlayAndUnmuteListeners();
       });
     });
   }
 
   function unmuteAudio() {
     audio.muted = false;
-    // Safely re-trigger play in case it got paused
-    audio.play().catch(e => console.error("Error playing on unmute:", e));
+    audio.play().catch(e => console.error("Play failed on unmute:", e));
     removeUnmuteListeners();
+  }
+
+  function playAndUnmuteAudio() {
+    audio.muted = false;
+    audio.play().then(() => {
+      console.log("Successfully played and unmuted audio on user action!");
+      removePlayAndUnmuteListeners();
+    }).catch(e => console.error("Play failed on interaction:", e));
   }
 
   function bindUnmuteListeners() {
@@ -49,19 +60,28 @@
     document.addEventListener('touchstart', unmuteAudio, { passive: true });
   }
 
+  // Remove listeners
   function removeUnmuteListeners() {
     document.removeEventListener('click', unmuteAudio);
     document.removeEventListener('scroll', unmuteAudio);
     document.removeEventListener('touchstart', unmuteAudio);
   }
 
-  // Try immediately on page load
-  window.addEventListener('load', () => {
-    tryUnmutedPlay();
-  });
-  
-  // Also try running it immediately in case page is already loaded
-  tryUnmutedPlay();
+  function bindPlayAndUnmuteListeners() {
+    document.addEventListener('click', playAndUnmuteAudio, { passive: true });
+    document.addEventListener('scroll', playAndUnmuteAudio, { passive: true });
+    document.addEventListener('touchstart', playAndUnmuteAudio, { passive: true });
+  }
+
+  function removePlayAndUnmuteListeners() {
+    document.removeEventListener('click', playAndUnmuteAudio);
+    document.removeEventListener('scroll', playAndUnmuteAudio);
+    document.removeEventListener('touchstart', playAndUnmuteAudio);
+  }
+
+  // Start the check
+  window.addEventListener('load', tryAutoplay);
+  tryAutoplay();
 })();
 
 // ===== COUNTDOWN TIMER =====
