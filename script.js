@@ -79,7 +79,7 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 const scrollDown = document.getElementById('scrollDown');
 if (scrollDown) {
   scrollDown.addEventListener('click', () => {
-    document.getElementById('love-story')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('couple')?.scrollIntoView({ behavior: 'smooth' });
   });
 }
 
@@ -87,7 +87,6 @@ if (scrollDown) {
 const wishesForm = document.getElementById('wishesForm');
 const wishesDisplay = document.getElementById('wishesDisplay');
 
-// Default wishes
 const defaultWishes = [
   { name: 'Family & Friends', relation: 'With Love', msg: 'Wishing Dr. Varsha and Akhil a lifetime of love, laughter, and togetherness. May your bond grow stronger with every passing day. 🪷' }
 ];
@@ -118,7 +117,7 @@ if (wishesForm) {
 
     const btn = document.getElementById('submitWish');
     btn.textContent = '✅ Blessings Sent!';
-    btn.style.background = 'linear-gradient(135deg, #2e7d32, #388e3c)';
+    btn.style.background = 'var(--crimson)';
     setTimeout(() => {
       btn.textContent = '🪷 Send Blessings 🪷';
       btn.style.background = '';
@@ -135,9 +134,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-console.log('🪷 Varsha & Akhil Wedding Website Loaded 🪷');
-
-// ===== ENGAGEMENT GALLERY SLIDER (Horizontal Slide) =====
+// ===== ENGAGEMENT GALLERY SLIDER =====
 (function initEngagementSlider() {
   const track   = document.getElementById('engSlider');
   const dotsWrap = document.getElementById('engDots');
@@ -154,13 +151,9 @@ console.log('🪷 Varsha & Akhil Wedding Website Loaded 🪷');
   const INTERVAL = 4000;
 
   function goTo(idx) {
-    // clamp with wrap
     current = (idx + total) % total;
-    // Slide the track
     track.style.transform = `translateX(-${current * 100}%)`;
-    // Update dots
     dots.forEach((d, i) => d.classList.toggle('active', i === current));
-    // Update counter
     if (counter) counter.textContent = `${current + 1} / ${total}`;
   }
 
@@ -175,16 +168,13 @@ console.log('🪷 Varsha & Akhil Wedding Website Loaded 🪷');
     if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
   }
 
-  // Arrows
   if (nextBtn) nextBtn.addEventListener('click', () => { next(); startAuto(); });
   if (prevBtn) prevBtn.addEventListener('click', () => { prev(); startAuto(); });
 
-  // Dots
   dots.forEach(dot => {
     dot.addEventListener('click', () => { goTo(+dot.dataset.idx); startAuto(); });
   });
 
-  // Touch / swipe
   let tx = 0;
   track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; stopAuto(); }, { passive: true });
   track.addEventListener('touchend', e => {
@@ -193,20 +183,15 @@ console.log('🪷 Varsha & Akhil Wedding Website Loaded 🪷');
     startAuto();
   }, { passive: true });
 
-  // Pause on hover (desktop)
   const wrapper = track.closest('.eng-slider-wrapper');
   if (wrapper) {
     wrapper.addEventListener('mouseenter', stopAuto);
     wrapper.addEventListener('mouseleave', startAuto);
   }
 
-  // Init
   goTo(0);
   startAuto();
 })();
-
-
-
 
 // ===== VIDEO PLACEHOLDER CHECK =====
 (function checkVideo() {
@@ -221,14 +206,115 @@ console.log('🪷 Varsha & Akhil Wedding Website Loaded 🪷');
   video.addEventListener('canplay', hidePlaceholder);
   video.addEventListener('loadeddata', hidePlaceholder);
   video.addEventListener('play', hidePlaceholder);
-  
-  video.addEventListener('error', () => {
-    placeholder.style.display = 'flex';
-  });
-  
-  // If already loaded
-  if (video.readyState >= 1) {
-    hidePlaceholder();
-  }
+  video.addEventListener('error', () => { placeholder.style.display = 'flex'; });
+  if (video.readyState >= 1) hidePlaceholder();
 })();
 
+// ===== CUSTOM LUXURY CURSOR INTERACTION =====
+(function initCustomCursor() {
+  const cursor = document.getElementById('customCursor');
+  if (!cursor) return;
+
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+
+  const morphTriggers = 'a, button, input[type="submit"], textarea, input[type="text"], .eng-arrow, .eng-dot, .event-map-btn, .directions-btn';
+  document.querySelectorAll(morphTriggers).forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('morph-lotus'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('morph-lotus'));
+  });
+})();
+
+// ===== MARQUEE VELOCITY ACCELERATION =====
+(function initMarqueeVelocity() {
+  const marqueeTop = document.getElementById('marqueeTop');
+  const marqueeBottom = document.getElementById('marqueeBottom');
+  if (!marqueeTop || !marqueeBottom) return;
+
+  let lastScrollTop = 0;
+  let velocityTimeout = null;
+
+  window.addEventListener('scroll', () => {
+    const st = window.pageYOffset || document.documentElement.scrollTop;
+    const diff = Math.abs(st - lastScrollTop);
+    lastScrollTop = st <= 0 ? 0 : st;
+
+    // Map velocity to animation duration (lower is faster)
+    const factor = Math.min(diff * 0.15, 10);
+    const speedTop = Math.max(5, 25 - factor);
+    const speedBottom = Math.max(5, 25 - factor);
+
+    marqueeTop.style.animationDuration = `${speedTop}s`;
+    marqueeBottom.style.animationDuration = `${speedBottom}s`;
+
+    // Gradually decelerate back to default (25s) after scroll stops
+    clearTimeout(velocityTimeout);
+    velocityTimeout = setTimeout(() => {
+      marqueeTop.style.animationDuration = '25s';
+      marqueeBottom.style.animationDuration = '25s';
+    }, 150);
+  });
+})();
+
+// ===== TIMELINE PATH HEIGHT & CARD HIGHLIGHT VIEWPORT TRACKER =====
+(function initTimelineTracker() {
+  const progressLine = document.getElementById('timelineProgress');
+  const timelineContainer = document.querySelector('.timeline-container');
+  const cards = document.querySelectorAll('.timeline-card');
+
+  if (!timelineContainer) return;
+
+  window.addEventListener('scroll', () => {
+    // 1. Progress height logic
+    const rect = timelineContainer.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const triggerY = viewportHeight / 2;
+    
+    let scrolledVal = triggerY - rect.top;
+    let percent = (scrolledVal / rect.height) * 100;
+    percent = Math.max(0, Math.min(100, percent));
+    
+    if (progressLine) progressLine.style.height = `${percent}%`;
+
+    // 2. Center highlights logic
+    cards.forEach(card => {
+      const cardRect = card.getBoundingClientRect();
+      const cardCenter = cardRect.top + cardRect.height / 2;
+      
+      // If card center is close to vertical center of viewport
+      if (Math.abs(cardCenter - triggerY) < 140) {
+        card.classList.add('timeline-highlight');
+      } else {
+        card.classList.remove('timeline-highlight');
+      }
+    });
+  });
+})();
+
+// ===== 3D CARD TILT INTERACTION =====
+(function init3DTilt() {
+  const card = document.getElementById('qrCardTilt');
+  if (!card) return;
+
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const px = x / rect.width;
+    const py = y / rect.height;
+    
+    const tiltX = (py - 0.5) * -12; // tilt up to 12 degrees
+    const tiltY = (px - 0.5) * 12;
+
+    card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+  });
+})();
+
+console.log('🪷 The Sacred Canvas Invitation loaded successfully 🪷');

@@ -3,24 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Varsha & Akhil | Wedding 2026</title>
-  <meta name="description" content="Join us to celebrate the auspicious wedding of Dr. Varsha S and Akhil P J on October 25, 2026 at RDR Convention Centre, Thiruvananthapuram." />
+  <title>The Sacred Canvas | Varsha &amp; Akhil Wedding</title>
+  <meta name="description" content="Celebrate the wedding of Dr. Varsha S and Akhil P J on October 25, 2026. The Sacred Canvas invitation." />
   <link rel="icon" type="image/jpeg" href="images/BRIDE.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Great+Vibes&family=Noto+Serif+Malayalam:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=5" />
+  <link rel="stylesheet" href="style.css?v=6" />
 </head>
 <body>
 
+  <!-- Custom luxury golden dot cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+
   <!-- ===== NAVIGATION ===== -->
   <nav id="navbar">
-    <div class="nav-logo">🪷 Varsha & Akhil</div>
+    <div class="nav-logo">🪷 The Sacred Canvas</div>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu">☰</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="#hero">Home</a></li>
+      <li><a href="#couple">Couple</a></li>
       <li><a href="#events">Events</a></li>
-      <li><a href="#family">Family</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#wishes">Blessings</a></li>
     </ul>
@@ -28,7 +31,7 @@
 
   <!-- ===== HERO SECTION ===== -->
   <section id="hero">
-    <!-- Ambient Waterfall Background Video -->
+    <!-- desaturated parallax background video of Kerala landscapes -->
     <div class="hero-video-container">
       <video autoplay loop muted playsinline class="hero-video-bg">
         <source src="videos/waterfalls.mp4" type="video/mp4">
@@ -39,103 +42,39 @@
     <div class="particles" id="particles"></div>
 
     <div class="hero-content">
-      <!-- 1. Ganesha Topmost First Item -->
+      <!-- Minimalist gold SVG line-art Ganesha drawings strokes on load -->
       <div class="hero-ganesha">
-        <img src="images/ganesha.png" alt="Lord Ganesha" />
+        <svg viewBox="0 0 100 100" class="ganesha-svg-line">
+          <path d="M50,12 C44,6 56,6 50,12 Z M50,12 C36,12 40,28 28,28 C20,28 16,33 22,40 C28,47 38,45 42,48 C44,51 38,62 42,75 C46,88 58,91 54,98" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="ganesha-stroke" />
+          <path d="M50,12 C64,12 60,28 72,28 C80,28 84,33 78,40 C72,47 62,45 58,48 C56,51 62,62 58,75 C54,88 42,91 46,98" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="ganesha-stroke" />
+          <path d="M44,22 C48,19 52,19 56,22" fill="none" stroke="#D4AF37" stroke-width="1" class="ganesha-stroke" />
+          <circle cx="50" cy="18" r="1.5" fill="#D4AF37" />
+        </svg>
       </div>
 
       <p class="sanskrit-blessing">ॐ श्री गणेशाय नमः</p>
-
-      <!-- 2. Hero Scrolling Text Banner -->
-      <div class="hero-marquee">
-        <div class="hero-marquee-track">
-          <span>🌸 Shubh Vivah — Dr. Varsha S &amp; Akhil P J — October 25, 2026 🌸</span>
-          <span>🌸 Shubh Vivah — Dr. Varsha S &amp; Akhil P J — October 25, 2026 🌸</span>
-          <span>🌸 Shubh Vivah — Dr. Varsha S &amp; Akhil P J — October 25, 2026 🌸</span>
-        </div>
-      </div>
-
-      <!-- 3. Main Countdown Timer at the Top -->
+      
+      <!-- Monumental Countdown at the top, stripped of cards/boxes, colossal thin serif digits -->
       <div class="countdown-wrapper hero-top-countdown">
-        <p class="countdown-label">✨ Counting Down to the Sacred Ceremony ✨</p>
         <div class="countdown" id="countdown">
-          <div class="count-block"><span id="cd-days">00</span><label>Days</label></div>
-          <div class="count-sep">:</div>
-          <div class="count-block"><span id="cd-hours">00</span><label>Hours</label></div>
-          <div class="count-sep">:</div>
-          <div class="count-block"><span id="cd-mins">00</span><label>Minutes</label></div>
-          <div class="count-sep">:</div>
-          <div class="count-block"><span id="cd-secs">00</span><label>Seconds</label></div>
-        </div>
-      </div>
-
-      <!-- 4. Bride & Groom Shown Together -->
-      <div class="couple-glass-card">
-        <div class="couple-photos">
-          <div class="portrait-card bride-card">
-            <img src="images/BRIDE.jpg" alt="Dr. Varsha S - Bride" class="portrait-img" />
-            <div class="portrait-overlay"></div>
+          <div class="count-block-text">
+            <span id="cd-days">00</span>
+            <label>DAYS</label>
           </div>
-          
-          <div class="couple-card-center">
-            <div class="wedding-symbol">
-              <div class="symbol-ring">
-                <svg viewBox="0 0 120 120" class="mandala-svg">
-                  <circle cx="60" cy="60" r="50" fill="none" stroke="var(--gold)" stroke-width="1" stroke-dasharray="4,4"/>
-                  <circle cx="60" cy="60" r="40" fill="none" stroke="var(--gold)" stroke-width="0.5"/>
-                  <text x="60" y="55" text-anchor="middle" fill="var(--gold)" font-size="28">🪷</text>
-                  <text x="60" y="80" text-anchor="middle" fill="var(--gold)" font-size="12" font-family="serif">&amp;</text>
-                </svg>
-              </div>
-            </div>
+          <div class="count-sep-text">:</div>
+          <div class="count-block-text">
+            <span id="cd-hours">00</span>
+            <label>HOURS</label>
           </div>
-
-          <div class="portrait-card groom-card">
-            <img src="images/GROOM.jpg" alt="Akhil P J - Groom" class="portrait-img" />
-            <div class="portrait-overlay"></div>
+          <div class="count-sep-text">:</div>
+          <div class="count-block-text">
+            <span id="cd-mins">00</span>
+            <label>MINUTES</label>
           </div>
-        </div>
-
-        <div class="couple-details">
-          <div class="couple-names-wrap">
-            <div class="couple-person">
-              <span class="name-label">Bride</span>
-              <h1 class="hero-name">Dr. Varsha S</h1>
-              <p class="name-parents">D/o Adv. Satheesh Kumar S &amp; Mrs. Smitha S Nair</p>
-            </div>
-            <div class="couple-person">
-              <span class="name-label">Groom</span>
-              <h1 class="hero-name">Akhil P J</h1>
-              <p class="name-parents">S/o Mr. Pradeep Kumar &amp; Mrs. Jayasree O</p>
-            </div>
-          </div>
-          
-          <div class="wedding-date-badge">
-            <span class="date-label">Auspicious Wedding Day</span>
-            <span class="date-main">October 25, 2026</span>
-            <span class="date-day">Sunday</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== HERO VENUE WIDE BANNER ===== -->
-    <div class="venue-banner-section">
-      <div class="ganesha-banner-img">
-        <img src="images/ganesha.png" alt="Lord Ganesha" />
-      </div>
-      <div class="venue-banner-img">
-        <img src="images/venue.jpg" alt="RDR Convention Centre - Wedding Venue" />
-        <div class="venue-banner-overlay">
-          <div class="venue-banner-content">
-            <p class="venue-banner-tag">💍 Grand Wedding Venue</p>
-            <h2 class="venue-banner-title">RDR Convention Centre</h2>
-            <p class="venue-banner-sub">Edappazhinji, Thiruvananthapuram, Kerala</p>
-            <div class="venue-banner-pills">
-              <span>📅 October 25, 2026 &nbsp;•&nbsp; Sunday</span>
-              <span>⏰ Reception from 10:30 AM</span>
-            </div>
-            <a href="https://maps.app.goo.gl/YhMqnr7tsKcxkpPFA" target="_blank" class="venue-banner-btn">🗺️ Get Directions</a>
+          <div class="count-sep-text">:</div>
+          <div class="count-block-text">
+            <span id="cd-secs">00</span>
+            <label>SECONDS</label>
           </div>
         </div>
       </div>
@@ -143,7 +82,63 @@
 
     <div class="scroll-down" id="scrollDown">
       <div class="scroll-arrow">▼</div>
-      <span>Scroll to Explore</span>
+      <span>Scroll to Canvas</span>
+    </div>
+  </section>
+
+  <!-- ===== DUAL OVERLAPPING INFINITE SCROLLING MARQUEES ===== -->
+  <div class="dual-marquees-container">
+    <div class="marquee-ribbon ribbon-top">
+      <div class="marquee-track-l2r" id="marqueeTop">
+        <span>SHUBH VIVAH ✦ DR. VARSHA S &amp; AKHIL P J ✦ OCTOBER 25, 2026 ✦ SHUBH VIVAH ✦ DR. VARSHA S &amp; AKHIL P J ✦ OCTOBER 25, 2026 ✦ SHUBH VIVAH ✦ DR. VARSHA S &amp; AKHIL P J ✦ OCTOBER 25, 2026 ✦</span>
+      </div>
+    </div>
+    <div class="marquee-ribbon ribbon-bottom">
+      <div class="marquee-track-r2l" id="marqueeBottom">
+        <span>RDR CONVENTION CENTRE ✦ TRIVANDRUM ✦ BLESSINGS &amp; LOVE ✦ RDR CONVENTION CENTRE ✦ TRIVANDRUM ✦ BLESSINGS &amp; LOVE ✦ RDR CONVENTION CENTRE ✦ TRIVANDRUM ✦ BLESSINGS &amp; LOVE ✦</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== COUPLE SECTION (Staggered Editorial Magazine Format) ===== -->
+  <section id="couple" class="section">
+    <div class="editorial-grid">
+      <!-- Dr. Varsha Portrait (Left, Higher) -->
+      <div class="editorial-block bride-block reveal">
+        <div class="editorial-photo-wrapper">
+          <div class="editorial-jasmine-bg"></div>
+          <img src="images/BRIDE.jpg" alt="Dr. Varsha S - Bride" class="editorial-img" />
+          <div class="editorial-overlay"></div>
+        </div>
+        <div class="editorial-content">
+          <span class="editorial-label">Bride</span>
+          <h2 class="editorial-name">Dr. Varsha S</h2>
+          <div class="editorial-lineage">
+            <p class="parents-text">D/o Adv. Satheesh Kumar S &amp; Mrs. Smitha S Nair</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center Logo Accent -->
+      <div class="editorial-center-symbol reveal">
+        <div class="gold-mandala">🪷</div>
+      </div>
+
+      <!-- Akhil Portrait (Right, Lower) -->
+      <div class="editorial-block groom-block reveal">
+        <div class="editorial-photo-wrapper">
+          <div class="editorial-leaf-bg"></div>
+          <img src="images/GROOM.jpg" alt="Akhil P J - Groom" class="editorial-img" />
+          <div class="editorial-overlay"></div>
+        </div>
+        <div class="editorial-content">
+          <span class="editorial-label">Groom</span>
+          <h2 class="editorial-name">Akhil P J</h2>
+          <div class="editorial-lineage">
+            <p class="parents-text">S/o Mr. Pradeep Kumar &amp; Mrs. Jayasree O</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -155,11 +150,7 @@
       <p class="section-sub">A beautiful beginning — captured forever</p>
     </div>
     <div class="video-wrapper reveal">
-      <div class="video-frame">
-        <div class="video-corner tl"></div>
-        <div class="video-corner tr"></div>
-        <div class="video-corner bl"></div>
-        <div class="video-corner br"></div>
+      <div class="video-frame warp-mask">
         <video id="engagementVideo" controls playsinline>
           <source src="videos/engagement.mp4" type="video/mp4">
         </video>
@@ -172,22 +163,6 @@
       </div>
     </div>
   </section>
-
-  <!-- ===== MARQUEE BANNER ===== -->
-  <div class="marquee-banner">
-    <div class="marquee-track">
-      <span>🌸 Shubh Vivah 🌸</span>
-      <span>🪔 Varsha & Akhil 🪔</span>
-      <span>💍 October 25, 2026 💍</span>
-      <span>🌺 With Love & Blessings 🌺</span>
-      <span>🪷 RDR Convention Centre, Thiruvananthapuram 🪷</span>
-      <span>🌸 Shubh Vivah 🌸</span>
-      <span>🪔 Varsha & Akhil 🪔</span>
-      <span>💍 October 25, 2026 💍</span>
-      <span>🌺 With Love & Blessings 🌺</span>
-      <span>🪷 RDR Convention Centre, Thiruvananthapuram 🪷</span>
-    </div>
-  </div>
 
   <!-- ===== ENGAGEMENT GALLERY SLIDER ===== -->
   <section id="engagement-gallery" class="section">
@@ -300,7 +275,6 @@
   </section>
 
   <!-- ===== LOVE STORY ===== -->
-
   <section id="love-story" class="section">
     <div class="section-header">
       <div class="lotus-divider">🪷</div>
@@ -321,7 +295,7 @@
     </div>
   </section>
 
-  <!-- ===== EVENTS SECTION ===== -->
+  <!-- ===== CELEBRATIONS TIMELINE (Central Line Path) ===== -->
   <section id="events" class="section section-alt">
     <div class="section-header">
       <div class="lotus-divider">🪷</div>
@@ -329,90 +303,110 @@
       <p class="section-sub">Join us for every sacred moment</p>
     </div>
 
-    <div class="events-grid">
+    <div class="timeline-container">
+      <!-- 1px vertical timeline path line -->
+      <div class="timeline-line">
+        <div class="timeline-progress" id="timelineProgress"></div>
+      </div>
 
-      <!-- Bride to Be Party -->
-      <div class="event-card personal-event reveal">
-        <div class="event-badge">Special Invitees Only</div>
-        <div class="event-icon">🥂</div>
-        <div class="event-date-tag">Oct 22 • Thursday</div>
-        <h3 class="event-name">Bride To Be Party</h3>
-        <div class="event-details">
-          <p class="event-venue">🏡 Bride's House</p>
-          <p class="event-note">A private celebration to shower our bride with love!</p>
+      <!-- 1. Bride to Be Party -->
+      <div class="timeline-item left reveal">
+        <div class="timeline-marker"></div>
+        <div class="timeline-card personal-event">
+          <div class="event-badge">Special Invitees Only</div>
+          <div class="event-icon">🥂</div>
+          <div class="event-date-tag">Oct 22 • Thursday</div>
+          <h3 class="event-name">Bride To Be Party</h3>
+          <div class="event-details">
+            <p class="event-venue">🏡 Bride's House</p>
+            <p class="event-note">A private celebration to shower our bride with love!</p>
+          </div>
         </div>
       </div>
 
-      <!-- Haldi & Mehendi -->
-      <div class="event-card personal-event reveal">
-        <div class="event-badge">Special Invitees Only</div>
-        <div class="event-icon">🌿</div>
-        <div class="event-date-tag">Oct 23 • Friday</div>
-        <h3 class="event-name">Haldi & Mehendi</h3>
-        <div class="event-details">
-          <p class="event-venue">🏡 Bride's House</p>
-          <p class="event-note">Sacred turmeric and intricate henna adorn the bride.</p>
+      <!-- 2. Haldi & Mehendi -->
+      <div class="timeline-item right reveal">
+        <div class="timeline-marker animate-mehendi"></div>
+        <div class="timeline-card personal-event">
+          <div class="event-badge">Special Invitees Only</div>
+          <div class="event-icon">🌿</div>
+          <div class="event-date-tag">Oct 23 • Friday</div>
+          <h3 class="event-name">Haldi &amp; Mehendi</h3>
+          <div class="event-details">
+            <p class="event-venue">🏡 Bride's House</p>
+            <p class="event-note">Sacred turmeric and intricate henna adorn the bride.</p>
+          </div>
         </div>
       </div>
 
-      <!-- Bride Reception -->
-      <div class="event-card main-event reveal">
-        <div class="event-venue-img"><img src="images/venue.jpg" alt="RDR Convention Centre" /></div>
-        <div class="event-icon">👗</div>
-        <div class="event-date-tag">Oct 24 • Saturday</div>
-        <h3 class="event-name">Bride's Reception</h3>
-        <div class="event-details">
-          <p class="event-time">⏰ 4:30 PM – 9:30 PM</p>
-          <p class="event-venue">📍 RDR Convention Centre, Mini Hall</p>
-          <p class="event-location">Edappazhinji, Thiruvananthapuram</p>
-          <a href="https://maps.app.goo.gl/YhMqnr7tsKcxkpPFA" target="_blank" class="event-map-btn">🗺️ Get Directions</a>
+      <!-- 3. Bride Reception -->
+      <div class="timeline-item left reveal">
+        <div class="timeline-marker"></div>
+        <div class="timeline-card main-event">
+          <div class="event-venue-img"><img src="images/venue.jpg" alt="RDR Convention Centre" /></div>
+          <div class="event-icon">👗</div>
+          <div class="event-date-tag">Oct 24 • Saturday</div>
+          <h3 class="event-name">Bride's Reception</h3>
+          <div class="event-details">
+            <p class="event-time">⏰ 4:30 PM – 9:30 PM</p>
+            <p class="event-venue">📍 RDR Convention Centre, Mini Hall</p>
+            <p class="event-location">Edappazhinji, Thiruvananthapuram</p>
+            <a href="https://maps.app.goo.gl/YhMqnr7tsKcxkpPFA" target="_blank" class="event-map-btn">🗺️ Get Directions</a>
+          </div>
         </div>
       </div>
 
-      <!-- Thalikettu -->
-      <div class="event-card sacred-event reveal">
-        <div class="event-badge">Personal Event</div>
-        <div class="event-icon">🪷</div>
-        <div class="event-date-tag">Oct 25 • Sunday</div>
-        <h3 class="event-name">Thalikettu</h3>
-        <div class="event-details">
-          <p class="event-venue">🛕 Sree Udiyanoor Devi Temple</p>
-          <p class="event-location">Maruthankuzhy</p>
-          <p class="event-note">Sacred tying of the Thali — the holiest moment.</p>
+      <!-- 4. Thalikettu -->
+      <div class="timeline-item right reveal">
+        <div class="timeline-marker animate-lamp"></div>
+        <div class="timeline-card sacred-event">
+          <div class="event-badge">Personal Event</div>
+          <div class="event-icon">🪷</div>
+          <div class="event-date-tag">Oct 25 • Sunday</div>
+          <h3 class="event-name">Thalikettu</h3>
+          <div class="event-details">
+            <p class="event-venue">🛕 Sree Udiyanoor Devi Temple</p>
+            <p class="event-location">Maruthankuzhy</p>
+            <p class="event-note">Sacred tying of the Thali — the holiest moment.</p>
+          </div>
         </div>
       </div>
 
-      <!-- Marriage -->
-      <div class="event-card main-event highlight-event reveal">
-        <div class="event-venue-img highlight-venue"><img src="images/venue.jpg" alt="RDR Convention Centre" /></div>
-        <div class="event-icon">💍</div>
-        <div class="event-date-tag">Oct 25 • Sunday</div>
-        <h3 class="event-name">Grand Wedding</h3>
-        <div class="event-details">
-          <p class="event-time">⏰ 10:30 AM</p>
-          <p class="event-venue">📍 RDR Convention Centre</p>
-          <p class="event-location">Edappazhinji, Thiruvananthapuram</p>
-          <a href="https://maps.app.goo.gl/YhMqnr7tsKcxkpPFA" target="_blank" class="event-map-btn gold-btn">🗺️ Get Directions</a>
+      <!-- 5. Grand Wedding -->
+      <div class="timeline-item left reveal">
+        <div class="timeline-marker animate-rings"></div>
+        <div class="timeline-card main-event highlight-event">
+          <div class="event-venue-img highlight-venue"><img src="images/venue.jpg" alt="RDR Convention Centre" /></div>
+          <div class="event-icon">💍</div>
+          <div class="event-date-tag">Oct 25 • Sunday</div>
+          <h3 class="event-name">Grand Wedding</h3>
+          <div class="event-details">
+            <p class="event-time">⏰ 10:30 AM</p>
+            <p class="event-venue">📍 RDR Convention Centre</p>
+            <p class="event-location">Edappazhinji, Thiruvananthapuram</p>
+            <a href="https://maps.app.goo.gl/YhMqnr7tsKcxkpPFA" target="_blank" class="event-map-btn gold-btn">🗺️ Get Directions</a>
+          </div>
         </div>
       </div>
 
-      <!-- Maruveed -->
-      <div class="event-card personal-event reveal">
-        <div class="event-venue-img rk-venue-img"><img src="images/venue-rk.jpg" alt="RK Convention Centre, Mailom" /></div>
-        <div class="event-badge">Special Invitees Only</div>
-        <div class="event-icon">🎊</div>
-        <div class="event-date-tag">Oct 26 • Monday</div>
-        <h3 class="event-name">Maruveed Ceremony</h3>
-        <div class="event-details">
-          <p class="event-venue">📍 RK Convention Centre</p>
-          <p class="event-location">Mailom</p>
-          <p class="event-note">A cherished homecoming ceremony for the newlyweds.</p>
+      <!-- 6. Maruveed Ceremony -->
+      <div class="timeline-item right reveal">
+        <div class="timeline-marker"></div>
+        <div class="timeline-card personal-event">
+          <div class="event-venue-img rk-venue-img"><img src="images/venue-rk.jpg" alt="RK Convention Centre, Mailom" /></div>
+          <div class="event-badge">Special Invitees Only</div>
+          <div class="event-icon">🎊</div>
+          <div class="event-date-tag">Oct 26 • Monday</div>
+          <h3 class="event-name">Maruveed Ceremony</h3>
+          <div class="event-details">
+            <p class="event-venue">📍 RK Convention Centre</p>
+            <p class="event-location">Mailom</p>
+            <p class="event-note">A cherished homecoming ceremony for the newlyweds.</p>
+          </div>
         </div>
       </div>
-
     </div>
   </section>
-
 
   <!-- ===== FAMILY SECTION ===== -->
   <section id="family" class="section">
@@ -423,7 +417,6 @@
     </div>
 
     <div class="family-grid">
-
       <!-- Bride's Family -->
       <div class="family-card reveal">
         <div class="family-card-header bride-header">
@@ -488,7 +481,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -512,7 +504,7 @@
       </div>
       <div class="gallery-placeholder reveal">
         <div class="placeholder-icon">🌸</div>
-        <p>Haldi & Mehendi moments…</p>
+        <p>Haldi &amp; Mehendi moments…</p>
         <span>Ceremony album</span>
       </div>
       <div class="gallery-placeholder reveal">
@@ -521,7 +513,7 @@
         <span>Reception night</span>
       </div>
     </div>
-    <p class="gallery-note">🌟 Photos & videos will be uploaded after the events. Stay tuned!</p>
+    <p class="gallery-note">🌟 Photos &amp; videos will be uploaded after the events. Stay tuned!</p>
   </section>
 
   <!-- ===== BLESSINGS / WISHES SECTION ===== -->
@@ -529,7 +521,7 @@
     <div class="section-header">
       <div class="lotus-divider">🪷</div>
       <h2 class="section-title">Send Your Blessings</h2>
-      <p class="section-sub">Shower the couple with your love & prayers</p>
+      <p class="section-sub">Shower the couple with your love &amp; prayers</p>
     </div>
     <div class="wishes-container">
       <form class="wishes-form reveal" id="wishesForm">
@@ -556,15 +548,16 @@
     </div>
   </section>
 
-  <!-- ===== QR CODE DIRECTIONS ===== -->
+  <!-- ===== DIRECTIONS / VENUE GEOMETRIC MAP ===== -->
   <section id="directions" class="section section-alt">
     <div class="section-header">
       <div class="lotus-divider">🪷</div>
       <h2 class="section-title">Find the Venue</h2>
       <p class="section-sub">RDR Convention Centre, Edappazhinji, Thiruvananthapuram</p>
     </div>
+    
     <div class="qr-wrapper reveal">
-      <div class="qr-card">
+      <div class="qr-card geometric-map-frame" id="qrCardTilt">
         <div class="qr-venue-photo">
           <img src="images/venue.jpg" alt="RDR Convention Centre" />
           <div class="qr-venue-overlay">
@@ -581,7 +574,7 @@
             <div class="qr-corner qr-br"></div>
             <a href="https://maps.app.goo.gl/YhMqnr7tsKcxkpPFA" target="_blank">
               <img
-                src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://maps.app.goo.gl/YhMqnr7tsKcxkpPFA&color=7B0D1E&bgcolor=FFF8ED&margin=10"
+                src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://maps.app.goo.gl/YhMqnr7tsKcxkpPFA&color=7B0D1E&bgcolor=FFFDF9&margin=10"
                 alt="QR Code - RDR Convention Centre Directions"
                 class="qr-img"
               />
@@ -598,6 +591,11 @@
 
   <!-- ===== FOOTER ===== -->
   <footer id="footer">
+    <!-- Faint 4% opacity watermark Sanskrit Shloka in the background -->
+    <div class="footer-shloka-watermark">
+      यत्र नार्यस्तु पूज्यन्ते रमन्ते तत्र देवताः
+    </div>
+
     <div class="footer-mandala">🪷</div>
     <div class="footer-names">
       <span class="footer-name">Dr. Varsha S</span>
@@ -605,20 +603,17 @@
       <span class="footer-name">Akhil P J</span>
     </div>
     <p class="footer-date">October 25, 2026 | Thiruvananthapuram, Kerala</p>
-    <p class="footer-shloka">
-      "यत्र नार्यस्तु पूज्यन्ते रमन्ते तत्र देवताः"<br/>
-      <em>Where women are revered, the divine rejoices.</em>
-    </p>
+    
     <div class="footer-divider">• • •</div>
     <p class="footer-credit">Made with 🪷 &amp; 💕 for a lifetime of togetherness</p>
     <div class="footer-dev-divider"></div>
     <p class="footer-dev">
-      &copy; 2026 Developed by <strong>Varun Satheesh</strong>
+      Designed &amp; Developed with 🪷 by <strong>Varun Satheesh</strong>
       &nbsp;|&nbsp;
       <a href="mailto:ai@varunsatheesh.in" class="footer-email">ai@varunsatheesh.in</a>
     </p>
   </footer>
 
-  <script src="script.js?v=2"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>
