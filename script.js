@@ -449,30 +449,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   loadBlessings();
 })();
 
-// ===== RSVP MODAL CONTROLLER =====
+// ===== RSVP FORM CONTROLLER =====
 (function initRSVP() {
-  const openBtn = document.getElementById('openRSVP');
-  const closeBtn = document.getElementById('closeRSVP');
-  const modal = document.getElementById('rsvpModal');
   const form = document.getElementById('rsvpForm');
-
-  if (!modal || !form) return;
-
-  if (openBtn) {
-    openBtn.addEventListener('click', () => {
-      modal.classList.add('open');
-    });
-  }
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      modal.classList.remove('open');
-    });
-  }
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) modal.classList.remove('open');
-  });
+  if (!form) return;
 
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -509,7 +489,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         alert(`Thank you, ${nameVal}! Your RSVP has been received. 🪷`);
         triggerBurst();
         form.reset();
-        modal.classList.remove('open');
       } else {
         alert("RSVP Error: " + (resData.error || "Failed to submit RSVP"));
       }
@@ -518,7 +497,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       alert(`Thank you, ${nameVal}! Your RSVP has been logged successfully (Offline fallback). 🪷`);
       triggerBurst();
       form.reset();
-      modal.classList.remove('open');
     } finally {
       if (submitBtn) submitBtn.textContent = '✉️ Submit RSVP ✉️';
     }
