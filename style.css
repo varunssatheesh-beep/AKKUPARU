@@ -145,7 +145,7 @@ h1, h2, h3, .font-serif {
 }
 .hero-video-bg {
   width: 100%; height: 100%; object-fit: cover;
-  pointer-events: none; filter: sepia(20%) brightness(0.4) contrast(1.1);
+  pointer-events: none;
   transform: scale(1.02);
 }
 .hero-video-container iframe.youtube-bg {
@@ -153,13 +153,12 @@ h1, h2, h3, .font-serif {
   top: 50%; left: 50%;
   width: 100vw; height: 56.25vw;
   min-height: 100vh; min-width: 177.77vh;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1.2);
   pointer-events: none;
-  filter: sepia(20%) brightness(0.4) contrast(1.1);
 }
 .hero-video-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(11, 27, 61, 0.6) 0%, rgba(11, 27, 61, 0.85) 100%);
+  background: linear-gradient(to bottom, rgba(11, 27, 61, 0.15) 0%, rgba(11, 27, 61, 0.35) 100%);
   z-index: 2;
 }
 .particles { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
