@@ -1,0 +1,8 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "akkuparu"
+pages_build_output_dir = "./"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "akkuparu-db"
+database_id = "15406604-0df1-4eff-ac37-827b274fec47"

@@ -9,3 +9,6 @@ desktop.ini
 
 # Temp
 *.log
+
+# Wrangler local cache
+.wrangler/
