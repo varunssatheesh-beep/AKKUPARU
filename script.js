@@ -1,4 +1,4 @@
-// ===== PARTICLES =====
+// ===== PARTICLES (Hero System) =====
 (function createParticles() {
   const container = document.getElementById('particles');
   if (!container) return;
@@ -25,7 +25,8 @@ function updateCountdown() {
     document.getElementById('cd-hours').textContent = '00';
     document.getElementById('cd-mins').textContent = '00';
     document.getElementById('cd-secs').textContent = '00';
-    document.querySelector('.countdown-label').textContent = '🎉 The celebrations have begun!';
+    const label = document.querySelector('.countdown-label');
+    if (label) label.textContent = '🎉 The celebrations have begun!';
     return;
   }
   const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -75,56 +76,6 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// ===== SCROLL DOWN ARROW =====
-const scrollDown = document.getElementById('scrollDown');
-if (scrollDown) {
-  scrollDown.addEventListener('click', () => {
-    document.getElementById('couple')?.scrollIntoView({ behavior: 'smooth' });
-  });
-}
-
-// ===== WISHES FORM =====
-const wishesForm = document.getElementById('wishesForm');
-const wishesDisplay = document.getElementById('wishesDisplay');
-
-const defaultWishes = [
-  { name: 'Family & Friends', relation: 'With Love', msg: 'Wishing Dr. Varsha and Akhil a lifetime of love, laughter, and togetherness. May your bond grow stronger with every passing day. 🪷' }
-];
-
-defaultWishes.forEach(w => renderWish(w));
-
-function renderWish({ name, relation, msg }) {
-  const card = document.createElement('div');
-  card.className = 'wish-card';
-  card.innerHTML = `
-    <div class="wish-name">🌸 ${name}</div>
-    <div class="wish-relation">${relation || ''}</div>
-    <div class="wish-msg">"${msg}"</div>
-  `;
-  wishesDisplay.prepend(card);
-}
-
-if (wishesForm) {
-  wishesForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name     = document.getElementById('wisher-name').value.trim();
-    const relation = document.getElementById('wisher-relation').value.trim();
-    const msg      = document.getElementById('wisher-message').value.trim();
-    if (!name || !msg) return;
-
-    renderWish({ name, relation, msg });
-    wishesForm.reset();
-
-    const btn = document.getElementById('submitWish');
-    btn.textContent = '✅ Blessings Sent!';
-    btn.style.background = 'var(--crimson)';
-    setTimeout(() => {
-      btn.textContent = '🪷 Send Blessings 🪷';
-      btn.style.background = '';
-    }, 2500);
-  });
-}
-
 // ===== SMOOTH NAV LINKS =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
@@ -148,7 +99,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   const total    = slides.length;
   let current    = 0;
   let autoTimer  = null;
-  const INTERVAL = 4000;
+  const INTERVAL = 4500;
 
   function goTo(idx) {
     current = (idx + total) % total;
@@ -210,7 +161,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   if (video.readyState >= 1) hidePlaceholder();
 })();
 
-// ===== CUSTOM LUXURY CURSOR INTERACTION =====
+// ===== CUSTOM LUXURY CURSOR =====
 (function initCustomCursor() {
   const cursor = document.getElementById('customCursor');
   if (!cursor) return;
@@ -220,14 +171,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     cursor.style.top = e.clientY + 'px';
   });
 
-  const morphTriggers = 'a, button, input[type="submit"], textarea, input[type="text"], .eng-arrow, .eng-dot, .event-map-btn, .directions-btn';
+  const morphTriggers = 'a, button, input[type="submit"], textarea, input[type="text"], .eng-arrow, .eng-dot, .event-map-btn, .directions-btn, .guestbook-close';
   document.querySelectorAll(morphTriggers).forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('morph-lotus'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('morph-lotus'));
   });
 })();
 
-// ===== MARQUEE VELOCITY ACCELERATION =====
+// ===== MARQUEE SCROLL SPEED ACCELERATION =====
 (function initMarqueeVelocity() {
   const marqueeTop = document.getElementById('marqueeTop');
   const marqueeBottom = document.getElementById('marqueeBottom');
@@ -241,7 +192,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     const diff = Math.abs(st - lastScrollTop);
     lastScrollTop = st <= 0 ? 0 : st;
 
-    // Map velocity to animation duration (lower is faster)
+    // Map velocity to speed factor
     const factor = Math.min(diff * 0.15, 10);
     const speedTop = Math.max(5, 25 - factor);
     const speedBottom = Math.max(5, 25 - factor);
@@ -249,7 +200,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     marqueeTop.style.animationDuration = `${speedTop}s`;
     marqueeBottom.style.animationDuration = `${speedBottom}s`;
 
-    // Gradually decelerate back to default (25s) after scroll stops
     clearTimeout(velocityTimeout);
     velocityTimeout = setTimeout(() => {
       marqueeTop.style.animationDuration = '25s';
@@ -258,7 +208,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 })();
 
-// ===== TIMELINE PATH HEIGHT & CARD HIGHLIGHT VIEWPORT TRACKER =====
+// ===== TIMELINE PROGRESS & VIEWPORT HIGHLIGHTER =====
 (function initTimelineTracker() {
   const progressLine = document.getElementById('timelineProgress');
   const timelineContainer = document.querySelector('.timeline-container');
@@ -267,7 +217,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   if (!timelineContainer) return;
 
   window.addEventListener('scroll', () => {
-    // 1. Progress height logic
     const rect = timelineContainer.getBoundingClientRect();
     const viewportHeight = window.innerHeight;
     const triggerY = viewportHeight / 2;
@@ -278,12 +227,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     
     if (progressLine) progressLine.style.height = `${percent}%`;
 
-    // 2. Center highlights logic
     cards.forEach(card => {
       const cardRect = card.getBoundingClientRect();
       const cardCenter = cardRect.top + cardRect.height / 2;
       
-      // If card center is close to vertical center of viewport
       if (Math.abs(cardCenter - triggerY) < 140) {
         card.classList.add('timeline-highlight');
       } else {
@@ -293,7 +240,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 })();
 
-// ===== 3D CARD TILT INTERACTION =====
+// ===== 3D TILT EFFECT =====
 (function init3DTilt() {
   const card = document.getElementById('qrCardTilt');
   if (!card) return;
@@ -302,11 +249,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
     const px = x / rect.width;
     const py = y / rect.height;
     
-    const tiltX = (py - 0.5) * -12; // tilt up to 12 degrees
+    const tiltX = (py - 0.5) * -12;
     const tiltY = (px - 0.5) * 12;
 
     card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
@@ -317,4 +263,167 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 })();
 
-console.log('🪷 The Sacred Canvas Invitation loaded successfully 🪷');
+// ===== CLOUDFLARE DATABASE D1 & GUEST BOOK MODAL =====
+(function initGuestBook() {
+  const openBtn = document.getElementById('openGuestBook');
+  const closeBtn = document.getElementById('closeGuestBook');
+  const modal = document.getElementById('guestBookModal');
+  const form = document.getElementById('wishesForm');
+  const display = document.getElementById('wishesDisplay');
+
+  if (!modal || !display) return;
+
+  // Open Modal
+  if (openBtn) {
+    openBtn.addEventListener('click', () => {
+      modal.classList.add('open');
+    });
+  }
+
+  // Close Modal
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('open');
+    });
+  }
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.classList.remove('open');
+  });
+
+  // Fetch blessings from API route
+  async function loadBlessings() {
+    try {
+      const response = await fetch('/api/blessings');
+      const data = await response.json();
+      
+      display.innerHTML = ''; // clear initial list
+      
+      if (data.blessings && data.blessings.length > 0) {
+        data.blessings.forEach(renderWish);
+      } else {
+        display.innerHTML = `
+          <div class="wish-card" style="text-align:center;">
+            <p class="wish-msg">Be the first to leave a blessing! 🪷</p>
+          </div>
+        `;
+      }
+    } catch (err) {
+      console.error("Failed to load blessings from database:", err);
+      // Fallback local display
+      display.innerHTML = `
+        <div class="wish-card">
+          <div class="wish-name">🌸 Adv. Satheesh Kumar S &amp; Mrs. Smitha S Nair</div>
+          <div class="wish-relation">Parents of the Bride</div>
+          <div class="wish-msg">"Wishing our dearest children Varsha and Akhil a beautiful journey ahead. May God shower you with endless happiness. 🪷"</div>
+        </div>
+      `;
+    }
+  }
+
+  function renderWish({ name, relation, message }) {
+    const card = document.createElement('div');
+    card.className = 'wish-card';
+    card.innerHTML = `
+      <div class="wish-name">🌸 ${escapeHtml(name)}</div>
+      <div class="wish-relation">${relation ? escapeHtml(relation) : 'Well Wisher'}</div>
+      <div class="wish-msg">"${escapeHtml(message)}"</div>
+    `;
+    display.prepend(card);
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+  }
+
+  // Submit Blessing to Database
+  if (form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const nameVal = document.getElementById('wisher-name').value.trim();
+      const relationVal = document.getElementById('wisher-relation').value.trim();
+      const msgVal = document.getElementById('wisher-message').value.trim();
+      
+      if (!nameVal || !msgVal) return;
+
+      const submitBtn = document.getElementById('submitWish');
+      if (submitBtn) submitBtn.textContent = '🕊️ Leaving Blessing...';
+
+      try {
+        const response = await fetch('/api/blessings', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: nameVal,
+            relation: relationVal,
+            message: msgVal
+          })
+        });
+
+        const resData = await response.json();
+        
+        if (response.ok && resData.success) {
+          // Prepend new blessing
+          renderWish(resData.blessing);
+          
+          // Trigger floating lotus petal burst animation
+          triggerLotusBurst();
+
+          // Reset and close
+          form.reset();
+          modal.classList.remove('open');
+        } else {
+          alert("Error: " + (resData.error || "Failed to submit blessing"));
+        }
+      } catch (err) {
+        console.error("API error:", err);
+        // Fallback local mock save if offline/not configured
+        renderWish({ name: nameVal, relation: relationVal, message: msgVal });
+        triggerLotusBurst();
+        form.reset();
+        modal.classList.remove('open');
+      } finally {
+        if (submitBtn) submitBtn.textContent = '🪷 Leave Blessings 🪷';
+      }
+    });
+  }
+
+  // Floating lotus burst particle effect
+  function triggerLotusBurst() {
+    const petals = ['🪷', '🌸', '✨', '💕', '🪷'];
+    const burstCount = 35;
+    
+    for (let i = 0; i < burstCount; i++) {
+      const petal = document.createElement('div');
+      petal.className = 'lotus-petal-particle';
+      petal.textContent = petals[Math.floor(Math.random() * petals.length)];
+      
+      // Random coordinates starting from top center
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.top = '-50px';
+      
+      const duration = Math.random() * 3 + 2; // 2-5 seconds
+      petal.style.animationDuration = duration + 's';
+      petal.style.animationDelay = Math.random() * 0.5 + 's';
+      
+      // Random scale & rotation
+      const scale = Math.random() * 0.8 + 0.6;
+      petal.style.transform = `scale(${scale})`;
+      
+      document.body.appendChild(petal);
+      
+      // Remove element when done
+      setTimeout(() => {
+        petal.remove();
+      }, (duration + 1) * 1000);
+    }
+  }
+
+  // Load blessings on start
+  loadBlessings();
+})();
+
+console.log('🪷 The Digital Temple Wedding Site Loaded successfully 🪷');
