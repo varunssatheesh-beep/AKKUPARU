@@ -14,74 +14,24 @@
   }
 })();
 
-// ===== AMBIENT SOUNDSCAPE AUTOPLAY CONTROLLER (No Mute Toggle) =====
+// ===== AMBIENT SOUNDSCAPE - starts muted via HTML autoplay, unmutes on first interaction =====
 (function initAmbientAudio() {
   const audio = document.getElementById('ambientAudio');
   if (!audio) return;
 
-  // Force audio element state to match muted attribute initially
-  audio.muted = true;
-
-  function tryAutoplay() {
-    // Try unmuted play first
-    audio.play().then(() => {
-      console.log("Successfully played unmuted audio on load!");
-    }).catch(err => {
-      console.log("Unmuted autoplay blocked on load. Trying muted autoplay...");
-      // Try playing muted (all browsers support muted autoplay)
-      audio.muted = true;
-      audio.play().then(() => {
-        console.log("Muted autoplay started. Listening for user action to unmute...");
-        bindUnmuteListeners();
-      }).catch(err2 => {
-        console.log("Muted autoplay blocked too. Listening for user action to play & unmute...");
-        bindPlayAndUnmuteListeners();
-      });
-    });
-  }
-
-  function unmuteAudio() {
+  function unlock() {
     audio.muted = false;
-    audio.play().catch(e => console.error("Play failed on unmute:", e));
-    removeUnmuteListeners();
+    audio.play().catch(() => {});
+    document.removeEventListener('touchstart', unlock, true);
+    document.removeEventListener('click',      unlock, true);
+    document.removeEventListener('scroll',     unlock, true);
   }
 
-  function playAndUnmuteAudio() {
-    audio.muted = false;
-    audio.play().then(() => {
-      console.log("Successfully played and unmuted audio on user action!");
-      removePlayAndUnmuteListeners();
-    }).catch(e => console.error("Play failed on interaction:", e));
-  }
-
-  function bindUnmuteListeners() {
-    document.addEventListener('click', unmuteAudio, { passive: true });
-    document.addEventListener('scroll', unmuteAudio, { passive: true });
-    document.addEventListener('touchstart', unmuteAudio, { passive: true });
-  }
-
-  // Remove listeners
-  function removeUnmuteListeners() {
-    document.removeEventListener('click', unmuteAudio);
-    document.removeEventListener('scroll', unmuteAudio);
-    document.removeEventListener('touchstart', unmuteAudio);
-  }
-
-  function bindPlayAndUnmuteListeners() {
-    document.addEventListener('click', playAndUnmuteAudio, { passive: true });
-    document.addEventListener('scroll', playAndUnmuteAudio, { passive: true });
-    document.addEventListener('touchstart', playAndUnmuteAudio, { passive: true });
-  }
-
-  function removePlayAndUnmuteListeners() {
-    document.removeEventListener('click', playAndUnmuteAudio);
-    document.removeEventListener('scroll', playAndUnmuteAudio);
-    document.removeEventListener('touchstart', playAndUnmuteAudio);
-  }
-
-  // Start the check
-  window.addEventListener('load', tryAutoplay);
-  tryAutoplay();
+  // If muted autoplay already running, just wait for interaction to unmute
+  // If autoplay was blocked entirely, play() will start it on the first touch/click
+  document.addEventListener('touchstart', unlock, { once: true, passive: true, capture: true });
+  document.addEventListener('click',      unlock, { once: true, passive: true, capture: true });
+  document.addEventListener('scroll',     unlock, { once: true, passive: true, capture: true });
 })();
 
 // ===== COUNTDOWN TIMER =====
