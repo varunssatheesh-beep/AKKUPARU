@@ -15,25 +15,56 @@
 })();
 
 // ===== AMBIENT SOUNDSCAPE =====
-// iOS Safari ONLY allows audio.play() when called synchronously inside
-// a touchstart or click handler. This is the only approach that works.
 (function initAmbientAudio() {
   var audio = document.getElementById('ambientAudio');
   if (!audio) return;
 
-  var started = false;
+  var played = false;
 
-  function startAudio() {
-    if (started) return;
-    started = true;
-    audio.play().catch(function() { started = false; });
-    document.removeEventListener('touchstart', startAudio, true);
-    document.removeEventListener('click', startAudio, true);
+  function doPlay() {
+    if (played) return;
+    var p = audio.play();
+    if (p !== undefined) {
+      p.then(function() {
+        played = true;
+        hideMusicBtn();
+      }).catch(function() {
+        // Blocked — show the tap button
+        showMusicBtn();
+      });
+    } else {
+      played = true;
+    }
   }
 
-  // capture:true ensures we fire BEFORE any other handler, staying inside the user gesture
-  document.addEventListener('touchstart', startAudio, { capture: true, passive: true });
-  document.addEventListener('click',      startAudio, { capture: true, passive: true });
+  function showMusicBtn() {
+    var btn = document.getElementById('musicStartBtn');
+    if (btn) btn.style.display = 'flex';
+  }
+
+  function hideMusicBtn() {
+    var btn = document.getElementById('musicStartBtn');
+    if (btn) btn.style.display = 'none';
+  }
+
+  // Try immediately (works on Chrome desktop if user has prior engagement)
+  doPlay();
+
+  // Also try on first interaction (works everywhere)
+  document.addEventListener('touchstart', doPlay, { capture: true, passive: true, once: true });
+  document.addEventListener('click',      doPlay, { capture: true, passive: true, once: true });
+
+  // Tap button click (last resort visible button)
+  var btn = document.getElementById('musicStartBtn');
+  if (btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      audio.play().then(function() {
+        played = true;
+        hideMusicBtn();
+      }).catch(function() {});
+    });
+  }
 })();
 
 // ===== COUNTDOWN TIMER =====
