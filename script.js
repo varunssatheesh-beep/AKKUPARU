@@ -14,20 +14,17 @@
   }
 })();
 
-// ===== AMBIENT SOUNDSCAPE AUTOPLAY/MUTE CONTROLLER =====
+// ===== AMBIENT SOUNDSCAPE AUTOPLAY CONTROLLER (No Mute Toggle) =====
 (function initAmbientAudio() {
   const audio = document.getElementById('ambientAudio');
-  const btn = document.getElementById('audioToggleBtn');
-  if (!audio || !btn) return;
+  if (!audio) return;
 
   function tryAutoplay() {
     if (audio.paused) {
       audio.play().then(() => {
-        btn.querySelector('.audio-icon').textContent = '🔊';
-        btn.classList.add('playing');
         removeInteractionListeners();
       }).catch(err => {
-        console.log("Autoplay was blocked or deferred by browser policy:", err);
+        console.log("Autoplay blocked or deferred by browser policy:", err);
       });
     }
   }
@@ -46,22 +43,6 @@
   // Try immediately on page load
   window.addEventListener('load', () => {
     tryAutoplay();
-  });
-
-  // Toggle button control
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation(); // prevent triggering parent window click listeners
-    if (audio.paused) {
-      audio.play().then(() => {
-        btn.querySelector('.audio-icon').textContent = '🔊';
-        btn.classList.add('playing');
-        removeInteractionListeners();
-      }).catch(err => console.error("Play button action failed:", err));
-    } else {
-      audio.pause();
-      btn.querySelector('.audio-icon').textContent = '🔇';
-      btn.classList.remove('playing');
-    }
   });
 })();
 
