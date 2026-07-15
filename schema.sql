@@ -15,3 +15,14 @@ VALUES (
   'Wishing our dearest Varsha and Akhil a life filled with endless love, happiness, and prosperity. God bless you both! 🪷',
   '2026-07-15T22:00:00.000Z'
 );
+
+-- Create table for storing RSVPs
+CREATE TABLE IF NOT EXISTS rsvps (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  phone TEXT,
+  attendees INTEGER DEFAULT 1,
+  events TEXT DEFAULT 'Both',
+  food TEXT DEFAULT 'Veg',
+  created_at TEXT NOT NULL
+);

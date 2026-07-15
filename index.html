@@ -630,9 +630,14 @@
         <p class="guestbook-invite-text">
           We would be deeply honored to receive your prayers, blessings, and warm wishes as we step into this sacred covenant.
         </p>
-        <button class="open-guestbook-btn" id="openGuestBook">
-          🪷 Sign the Guest Book 🪷
-        </button>
+        <div class="guestbook-actions" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+          <button class="open-guestbook-btn" id="openGuestBook">
+            🪷 Sign the Guest Book 🪷
+          </button>
+          <button class="open-guestbook-btn rsvp-btn-gold" id="openRSVP" style="background: var(--gold); color: var(--royal-blue); border-color: var(--royal-blue);">
+            ✉️ Confirm Attendance / RSVP ✉️
+          </button>
+        </div>
       </div>
 
       <!-- Live blessings display container -->
@@ -666,6 +671,56 @@
         </div>
         <button type="submit" class="submit-btn" id="submitWish">
           🪷 Leave Blessings 🪷
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== THE RSVP POPUP MODAL ===== -->
+  <div class="guestbook-modal" id="rsvpModal">
+    <div class="guestbook-modal-content">
+      <button class="guestbook-close" id="closeRSVP" aria-label="Close Modal">✕</button>
+      <div class="guestbook-header">
+        <span class="guestbook-mandala">✉️</span>
+        <h2>Confirm Attendance (RSVP)</h2>
+        <p>Please let us know if you'll be joining our celebration</p>
+      </div>
+      <form class="wishes-form" id="rsvpForm">
+        <div class="form-group">
+          <label for="rsvp-name">Your Full Name</label>
+          <input type="text" id="rsvp-name" placeholder="Enter your name" required />
+        </div>
+        <div class="form-group">
+          <label for="rsvp-phone">Contact Number</label>
+          <input type="text" id="rsvp-phone" placeholder="Enter phone number" />
+        </div>
+        <div class="form-group">
+          <label for="rsvp-attendees">Number of Attendees</label>
+          <select id="rsvp-attendees" style="width:100%; padding:14px 18px; border:1.5px solid var(--glass-border); border-radius:12px; background:var(--ivory-dark); color:var(--charcoal); outline:none;">
+            <option value="1">1 Person</option>
+            <option value="2">2 People</option>
+            <option value="3">3 People</option>
+            <option value="4">4 People</option>
+            <option value="5">5+ People</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="rsvp-events">Which Events are you attending?</label>
+          <select id="rsvp-events" style="width:100%; padding:14px 18px; border:1.5px solid var(--glass-border); border-radius:12px; background:var(--ivory-dark); color:var(--charcoal); outline:none;">
+            <option value="Both">Both (Oct 24 &amp; 25)</option>
+            <option value="Reception">Reception (Oct 24)</option>
+            <option value="Wedding">Wedding / Feast (Oct 25)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="rsvp-food">Food Preference</label>
+          <select id="rsvp-food" style="width:100%; padding:14px 18px; border:1.5px solid var(--glass-border); border-radius:12px; background:var(--ivory-dark); color:var(--charcoal); outline:none;">
+            <option value="Veg">Vegetarian Feast 🌿</option>
+            <option value="Non-Veg">Non-Vegetarian Feast 🍗</option>
+          </select>
+        </div>
+        <button type="submit" class="submit-btn" id="submitRSVPBtn" style="background: var(--gold); color: var(--royal-blue); border-color: var(--royal-blue);">
+          ✉️ Submit RSVP ✉️
         </button>
       </form>
     </div>

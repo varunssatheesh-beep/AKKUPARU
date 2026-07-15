@@ -40,6 +40,17 @@ export async function onRequestGet(context) {
   }
 
   try {
+    // Proactively create tables if they do not exist
+    await env.DB.prepare(
+      `CREATE TABLE IF NOT EXISTS blessings (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        relation TEXT,
+        message TEXT NOT NULL,
+        created_at TEXT NOT NULL
+      )`
+    ).run();
+
     // Query D1 SQL database
     const { results } = await env.DB.prepare(
       "SELECT * FROM blessings ORDER BY id DESC"
@@ -82,6 +93,17 @@ export async function onRequestPost(context) {
     }
 
     const createdAt = new Date().toISOString();
+
+    // Proactively create tables if they do not exist
+    await env.DB.prepare(
+      `CREATE TABLE IF NOT EXISTS blessings (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        relation TEXT,
+        message TEXT NOT NULL,
+        created_at TEXT NOT NULL
+      )`
+    ).run();
 
     // Insert into D1 SQL database
     const info = await env.DB.prepare(

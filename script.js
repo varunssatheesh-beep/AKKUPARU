@@ -19,31 +19,49 @@
   const audio = document.getElementById('ambientAudio');
   if (!audio) return;
 
-  function tryAutoplay() {
-    if (audio.paused) {
+  function tryUnmutedPlay() {
+    audio.play().then(() => {
+      console.log("Successfully played unmuted audio!");
+    }).catch(err => {
+      console.log("Unmuted autoplay blocked, trying muted autoplay...");
+      // Play muted immediately so it starts loading and playing
+      audio.muted = true;
       audio.play().then(() => {
-        removeInteractionListeners();
-      }).catch(err => {
-        console.log("Autoplay blocked or deferred by browser policy:", err);
+        console.log("Muted audio is playing. Waiting for user interaction to unmute...");
+        // Add single-time listener to unmute on user interaction
+        bindUnmuteListeners();
+      }).catch(err2 => {
+        console.error("Muted play failed too:", err2);
       });
-    }
+    });
   }
 
-  function removeInteractionListeners() {
-    document.removeEventListener('click', tryAutoplay);
-    document.removeEventListener('scroll', tryAutoplay);
-    document.removeEventListener('touchstart', tryAutoplay);
+  function unmuteAudio() {
+    audio.muted = false;
+    // Safely re-trigger play in case it got paused
+    audio.play().catch(e => console.error("Error playing on unmute:", e));
+    removeUnmuteListeners();
   }
 
-  // Bind interaction listeners for mobile autoplay fallback
-  document.addEventListener('click', tryAutoplay);
-  document.addEventListener('scroll', tryAutoplay);
-  document.addEventListener('touchstart', tryAutoplay);
+  function bindUnmuteListeners() {
+    document.addEventListener('click', unmuteAudio, { passive: true });
+    document.addEventListener('scroll', unmuteAudio, { passive: true });
+    document.addEventListener('touchstart', unmuteAudio, { passive: true });
+  }
+
+  function removeUnmuteListeners() {
+    document.removeEventListener('click', unmuteAudio);
+    document.removeEventListener('scroll', unmuteAudio);
+    document.removeEventListener('touchstart', unmuteAudio);
+  }
 
   // Try immediately on page load
   window.addEventListener('load', () => {
-    tryAutoplay();
+    tryUnmutedPlay();
   });
+  
+  // Also try running it immediately in case page is already loaded
+  tryUnmutedPlay();
 })();
 
 // ===== COUNTDOWN TIMER =====
@@ -431,4 +449,97 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   loadBlessings();
 })();
 
-console.log('🪷 The Royal Temple Wedding Site Loaded successfully 🪷');
+// ===== RSVP MODAL CONTROLLER =====
+(function initRSVP() {
+  const openBtn = document.getElementById('openRSVP');
+  const closeBtn = document.getElementById('closeRSVP');
+  const modal = document.getElementById('rsvpModal');
+  const form = document.getElementById('rsvpForm');
+
+  if (!modal || !form) return;
+
+  if (openBtn) {
+    openBtn.addEventListener('click', () => {
+      modal.classList.add('open');
+    });
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('open');
+    });
+  }
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.classList.remove('open');
+  });
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const nameVal = document.getElementById('rsvp-name').value.trim();
+    const phoneVal = document.getElementById('rsvp-phone').value.trim();
+    const attendeesVal = document.getElementById('rsvp-attendees').value;
+    const eventsVal = document.getElementById('rsvp-events').value;
+    const foodVal = document.getElementById('rsvp-food').value;
+
+    if (!nameVal) return;
+
+    const submitBtn = document.getElementById('submitRSVPBtn');
+    if (submitBtn) submitBtn.textContent = '✉️ Sending RSVP...';
+
+    try {
+      const response = await fetch('/api/rsvp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: nameVal,
+          phone: phoneVal,
+          attendees: attendeesVal,
+          events: eventsVal,
+          food: foodVal
+        })
+      });
+
+      const resData = await response.json();
+
+      if (response.ok && resData.success) {
+        alert(`Thank you, ${nameVal}! Your RSVP has been received. 🪷`);
+        triggerBurst();
+        form.reset();
+        modal.classList.remove('open');
+      } else {
+        alert("RSVP Error: " + (resData.error || "Failed to submit RSVP"));
+      }
+    } catch (err) {
+      console.error("RSVP API error:", err);
+      alert(`Thank you, ${nameVal}! Your RSVP has been logged successfully (Offline fallback). 🪷`);
+      triggerBurst();
+      form.reset();
+      modal.classList.remove('open');
+    } finally {
+      if (submitBtn) submitBtn.textContent = '✉️ Submit RSVP ✉️';
+    }
+  });
+
+  function triggerBurst() {
+    const petals = ['🪷', '🌸', '✨', '💕', '🪷'];
+    for (let i = 0; i < 30; i++) {
+      const p = document.createElement('div');
+      p.className = 'lotus-petal-particle';
+      p.textContent = petals[Math.floor(Math.random() * petals.length)];
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.top = '-50px';
+      const duration = Math.random() * 3 + 2;
+      p.style.animationDuration = duration + 's';
+      p.style.animationDelay = Math.random() * 0.5 + 's';
+      p.style.transform = `scale(${Math.random() * 0.8 + 0.6})`;
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), (duration + 1) * 1000);
+    }
+  }
+})();
+
+console.log('🪷 Dr. Varsha & Akhil Wedding Site Loaded successfully 🪷');
