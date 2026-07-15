@@ -39,59 +39,82 @@
     <div class="particles" id="particles"></div>
 
     <div class="hero-content">
-      <p class="sanskrit-blessing">ॐ श्री गणेशाय नमः</p>
-      <p class="hero-subtitle-top">With the blessings of the Almighty</p>
+      <!-- 1. Ganesha Topmost First Item -->
+      <div class="hero-ganesha">
+        <img src="images/ganesha.png" alt="Lord Ganesha" />
+      </div>
 
-      <div class="names-wrapper">
-        <div class="portrait-block bride-portrait-block">
+      <p class="sanskrit-blessing">ॐ श्री गणेशाय नमः</p>
+
+      <!-- 2. Hero Scrolling Text Banner -->
+      <div class="hero-marquee">
+        <div class="hero-marquee-track">
+          <span>🌸 Shubh Vivah — Dr. Varsha S &amp; Akhil P J — October 25, 2026 🌸</span>
+          <span>🌸 Shubh Vivah — Dr. Varsha S &amp; Akhil P J — October 25, 2026 🌸</span>
+          <span>🌸 Shubh Vivah — Dr. Varsha S &amp; Akhil P J — October 25, 2026 🌸</span>
+        </div>
+      </div>
+
+      <!-- 3. Main Countdown Timer at the Top -->
+      <div class="countdown-wrapper hero-top-countdown">
+        <p class="countdown-label">✨ Counting Down to the Sacred Ceremony ✨</p>
+        <div class="countdown" id="countdown">
+          <div class="count-block"><span id="cd-days">00</span><label>Days</label></div>
+          <div class="count-sep">:</div>
+          <div class="count-block"><span id="cd-hours">00</span><label>Hours</label></div>
+          <div class="count-sep">:</div>
+          <div class="count-block"><span id="cd-mins">00</span><label>Minutes</label></div>
+          <div class="count-sep">:</div>
+          <div class="count-block"><span id="cd-secs">00</span><label>Seconds</label></div>
+        </div>
+      </div>
+
+      <!-- 4. Bride & Groom Shown Together -->
+      <div class="couple-glass-card">
+        <div class="couple-photos">
           <div class="portrait-card bride-card">
             <img src="images/BRIDE.jpg" alt="Dr. Varsha S - Bride" class="portrait-img" />
             <div class="portrait-overlay"></div>
           </div>
-          <span class="name-label">Bride</span>
-          <h1 class="hero-name">Dr. Varsha S</h1>
-          <p class="name-parents">D/o Adv. Satheesh Kumar S &amp; Mrs. Smitha S Nair</p>
-        </div>
-
-        <div class="hero-center-block">
-          <div class="wedding-symbol">
-            <div class="symbol-ring">
-              <svg viewBox="0 0 120 120" class="mandala-svg">
-                <circle cx="60" cy="60" r="50" fill="none" stroke="var(--gold)" stroke-width="1" stroke-dasharray="4,4"/>
-                <circle cx="60" cy="60" r="40" fill="none" stroke="var(--gold)" stroke-width="0.5"/>
-                <text x="60" y="55" text-anchor="middle" fill="var(--gold)" font-size="28">🪷</text>
-                <text x="60" y="80" text-anchor="middle" fill="var(--gold)" font-size="12" font-family="serif">&amp;</text>
-              </svg>
+          
+          <div class="couple-card-center">
+            <div class="wedding-symbol">
+              <div class="symbol-ring">
+                <svg viewBox="0 0 120 120" class="mandala-svg">
+                  <circle cx="60" cy="60" r="50" fill="none" stroke="var(--gold)" stroke-width="1" stroke-dasharray="4,4"/>
+                  <circle cx="60" cy="60" r="40" fill="none" stroke="var(--gold)" stroke-width="0.5"/>
+                  <text x="60" y="55" text-anchor="middle" fill="var(--gold)" font-size="28">🪷</text>
+                  <text x="60" y="80" text-anchor="middle" fill="var(--gold)" font-size="12" font-family="serif">&amp;</text>
+                </svg>
+              </div>
             </div>
           </div>
+
+          <div class="portrait-card groom-card">
+            <img src="images/GROOM.jpg" alt="Akhil P J - Groom" class="portrait-img" />
+            <div class="portrait-overlay"></div>
+          </div>
+        </div>
+
+        <div class="couple-details">
+          <div class="couple-names-wrap">
+            <div class="couple-person">
+              <span class="name-label">Bride</span>
+              <h1 class="hero-name">Dr. Varsha S</h1>
+              <p class="name-parents">D/o Adv. Satheesh Kumar S &amp; Mrs. Smitha S Nair</p>
+            </div>
+            <div class="couple-person">
+              <span class="name-label">Groom</span>
+              <h1 class="hero-name">Akhil P J</h1>
+              <p class="name-parents">S/o Mr. Pradeep Kumar &amp; Mrs. Jayasree O</p>
+            </div>
+          </div>
+          
           <div class="wedding-date-badge">
             <span class="date-label">Auspicious Wedding Day</span>
             <span class="date-main">October 25, 2026</span>
             <span class="date-day">Sunday</span>
           </div>
-          <!-- Countdown Timer -->
-          <div class="countdown-wrapper">
-            <p class="countdown-label">✨ Counting Down to the Sacred Ceremony ✨</p>
-            <div class="countdown" id="countdown">
-              <div class="count-block"><span id="cd-days">00</span><label>Days</label></div>
-              <div class="count-sep">:</div>
-              <div class="count-block"><span id="cd-hours">00</span><label>Hours</label></div>
-              <div class="count-sep">:</div>
-              <div class="count-block"><span id="cd-mins">00</span><label>Minutes</label></div>
-              <div class="count-sep">:</div>
-              <div class="count-block"><span id="cd-secs">00</span><label>Seconds</label></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portrait-block groom-portrait-block">
-          <div class="portrait-card groom-card">
-            <img src="images/GROOM.jpg" alt="Akhil P J - Groom" class="portrait-img" />
-            <div class="portrait-overlay"></div>
-          </div>
-          <span class="name-label">Groom</span>
-          <h1 class="hero-name">Akhil P J</h1>
-          <p class="name-parents">S/o Mr. Pradeep Kumar &amp; Mrs. Jayasree O</p>
         </div>
       </div>
     </div>
