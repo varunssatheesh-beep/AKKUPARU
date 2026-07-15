@@ -20,12 +20,43 @@
   const btn = document.getElementById('audioToggleBtn');
   if (!audio || !btn) return;
 
-  btn.addEventListener('click', () => {
+  function tryAutoplay() {
     if (audio.paused) {
       audio.play().then(() => {
         btn.querySelector('.audio-icon').textContent = '🔊';
         btn.classList.add('playing');
-      }).catch(err => console.error("Audio play blocked:", err));
+        removeInteractionListeners();
+      }).catch(err => {
+        console.log("Autoplay was blocked or deferred by browser policy:", err);
+      });
+    }
+  }
+
+  function removeInteractionListeners() {
+    document.removeEventListener('click', tryAutoplay);
+    document.removeEventListener('scroll', tryAutoplay);
+    document.removeEventListener('touchstart', tryAutoplay);
+  }
+
+  // Bind interaction listeners for mobile autoplay fallback
+  document.addEventListener('click', tryAutoplay);
+  document.addEventListener('scroll', tryAutoplay);
+  document.addEventListener('touchstart', tryAutoplay);
+
+  // Try immediately on page load
+  window.addEventListener('load', () => {
+    tryAutoplay();
+  });
+
+  // Toggle button control
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation(); // prevent triggering parent window click listeners
+    if (audio.paused) {
+      audio.play().then(() => {
+        btn.querySelector('.audio-icon').textContent = '🔊';
+        btn.classList.add('playing');
+        removeInteractionListeners();
+      }).catch(err => console.error("Play button action failed:", err));
     } else {
       audio.pause();
       btn.querySelector('.audio-icon').textContent = '🔇';
@@ -196,55 +227,21 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 })();
 
-// ===== MARQUEE SCROLL SPEED ACCELERATION =====
-(function initMarqueeVelocity() {
-  const marqueeTop = document.getElementById('marqueeTop');
-  const marqueeBottom = document.getElementById('marqueeBottom');
-  if (!marqueeTop || !marqueeBottom) return;
-
-  let lastScrollTop = 0;
-  let velocityTimeout = null;
-
-  window.addEventListener('scroll', () => {
-    const st = window.pageYOffset || document.documentElement.scrollTop;
-    const diff = Math.abs(st - lastScrollTop);
-    lastScrollTop = st <= 0 ? 0 : st;
-
-    // Map velocity to speed factor
-    const factor = Math.min(diff * 0.15, 10);
-    const speedTop = Math.max(5, 25 - factor);
-    const speedBottom = Math.max(5, 25 - factor);
-
-    marqueeTop.style.animationDuration = `${speedTop}s`;
-    marqueeBottom.style.animationDuration = `${speedBottom}s`;
-
-    clearTimeout(velocityTimeout);
-    velocityTimeout = setTimeout(() => {
-      marqueeTop.style.animationDuration = '25s';
-      marqueeBottom.style.animationDuration = '25s';
-    }, 150);
-  });
-})();
-
 // ===== HORIZONTAL CAROUSEL SCROLLING CONTROLS =====
 (function initEventsCarousel() {
-  const track = document.getElementById('eventsCarousel');
+  const wrapper = document.querySelector('.events-carousel-wrapper');
   const prevBtn = document.getElementById('carouselPrev');
   const nextBtn = document.getElementById('carouselNext');
-  if (!track || !prevBtn || !nextBtn) return;
+  if (!wrapper || !prevBtn || !nextBtn) return;
 
-  let currentTranslate = 0;
   const cardWidth = 340; // card min-width + gap
 
   nextBtn.addEventListener('click', () => {
-    const maxScroll = track.scrollWidth - track.parentElement.clientWidth;
-    currentTranslate = Math.min(currentTranslate + cardWidth, maxScroll);
-    track.style.transform = `translateX(-${currentTranslate}px)`;
+    wrapper.scrollBy({ left: cardWidth, behavior: 'smooth' });
   });
 
   prevBtn.addEventListener('click', () => {
-    currentTranslate = Math.max(currentTranslate - cardWidth, 0);
-    track.style.transform = `translateX(-${currentTranslate}px)`;
+    wrapper.scrollBy({ left: -cardWidth, behavior: 'smooth' });
   });
 })();
 

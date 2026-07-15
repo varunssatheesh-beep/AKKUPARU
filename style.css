@@ -359,6 +359,9 @@ h1, h2, h3, .font-serif {
   border-radius: 50% !important;
   object-position: center 15%;
 }
+.groom-frame img {
+  object-position: center top !important;
+}
 .temple-couple-photo-frame:hover {
   transform: scale(1.02) translateY(-6px);
   box-shadow: 0 30px 65px rgba(11, 27, 61, 0.22), var(--shadow-glow);
@@ -465,11 +468,18 @@ h1, h2, h3, .font-serif {
   display: flex; align-items: center; gap: 20px;
 }
 .events-carousel-wrapper {
-  overflow: hidden; width: 100%; padding: 20px 5px;
+  overflow-x: auto;
+  width: 100%;
+  padding: 20px 5px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.events-carousel-wrapper::-webkit-scrollbar {
+  display: none;
 }
 .events-carousel-track {
-  display: flex; gap: 30px; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
+  display: flex; gap: 30px;
 }
 .carousel-card {
   flex: 0 0 calc(33.33% - 20px); min-width: 310px;
@@ -1070,7 +1080,8 @@ h1, h2, h3, .font-serif {
   .qr-code-block { padding: 36px 20px; border-left: none; border-top: 1.5px solid var(--glass-border); }
   .family-grid { grid-template-columns: 1fr; gap: 30px; }
   
-  .carousel-card { flex: 0 0 100%; min-width: 260px; }
+  .carousel-card { flex: 0 0 85%; min-width: 280px; }
+  .carousel-control { display: none !important; }
 }
 
 @media (max-width: 580px) {
