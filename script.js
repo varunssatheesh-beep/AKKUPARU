@@ -494,4 +494,23 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   }
 })();
 
+// ===== CREATOR ANNOUNCEMENT TICKER (Single Pass & Auto Disappear) =====
+(function initCreatorTicker() {
+  const track = document.getElementById('creatorTickerTrack');
+  const ticker = document.getElementById('creatorTicker');
+  if (!track || !ticker) return;
+
+  function removeTicker() {
+    ticker.style.opacity = '0';
+    ticker.style.visibility = 'hidden';
+    setTimeout(() => {
+      ticker.style.display = 'none';
+    }, 850);
+  }
+
+  track.addEventListener('animationend', removeTicker);
+  // Backup timer (24s) in case animationend event isn't fired
+  setTimeout(removeTicker, 24000);
+})();
+
 console.log('🪷 Dr. Varsha & Akhil Wedding Site Loaded successfully 🪷');
