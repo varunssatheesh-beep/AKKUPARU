@@ -449,10 +449,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
     const totalGuests = data.totalGuests || 0;
     const totalRsvps = data.totalRsvps || 0;
-    const fillPercent = Math.min(Math.max(totalGuests * 2.5, 12), 100);
+    const targetCapacity = 2000;
+    const fillPercent = Math.min(Math.max((totalGuests / targetCapacity) * 100, 2), 100);
 
-    if (totalGuestsEl) totalGuestsEl.textContent = totalGuests;
-    if (totalResponsesEl) totalResponsesEl.textContent = totalRsvps;
+    if (totalGuestsEl) totalGuestsEl.textContent = totalGuests.toLocaleString();
+    if (totalResponsesEl) totalResponsesEl.textContent = totalRsvps.toLocaleString();
     if (progressFillEl) {
       setTimeout(() => {
         progressFillEl.style.width = fillPercent + '%';
