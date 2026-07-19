@@ -929,6 +929,152 @@ h1, h2, h3, .font-serif {
 .wish-card .wish-relation { color: var(--gold); font-size: 0.72rem; margin-bottom: 12px; font-family: 'Poppins', sans-serif; text-transform: uppercase; font-weight: 600; }
 .wish-card .wish-msg { color: var(--charcoal); opacity: 0.95; font-style: italic; line-height: 1.8; font-size: 1rem; }
 
+/* ===== LIVE RSVP PROGRESS LEVEL BAR ===== */
+.rsvp-progress-card {
+  background: linear-gradient(135deg, rgba(11, 27, 61, 0.94), rgba(20, 42, 90, 0.90));
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1.5px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 36px 32px;
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto 30px;
+  box-shadow: 0 15px 40px rgba(11, 27, 61, 0.25), var(--shadow-glow);
+  position: relative;
+  overflow: hidden;
+}
+
+.rsvp-progress-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.15), transparent);
+  animation: rsvpCardGlow 6s infinite;
+}
+
+@keyframes rsvpCardGlow {
+  0% { left: -100%; }
+  50%, 100% { left: 100%; }
+}
+
+.rsvp-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.rsvp-progress-title h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45rem;
+  color: var(--ivory);
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.rsvp-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(220, 53, 69, 0.18);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 107, 107, 0.4);
+  border-radius: 20px;
+  font-size: 0.65rem;
+  padding: 4px 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-family: 'Poppins', sans-serif;
+  animation: liveBadgePulse 2s infinite ease-in-out;
+}
+
+@keyframes liveBadgePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.75; transform: scale(0.97); }
+}
+
+.rsvp-progress-stats {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  letter-spacing: 0.5px;
+}
+
+.rsvp-progress-stats span#rsvpTotalGuests {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+.rsvp-progress-bar-container {
+  height: 26px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 30px;
+  border: 1px solid rgba(201, 169, 97, 0.35);
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 16px;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.rsvp-progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #c9a961 0%, #f0d080 50%, #c9a961 100%);
+  background-size: 200% 100%;
+  border-radius: 30px;
+  transition: width 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  box-shadow: 0 0 18px rgba(201, 169, 97, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 12px;
+  animation: fillShimmer 3s infinite linear;
+}
+
+@keyframes fillShimmer {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.rsvp-progress-percent {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--royal-blue);
+  letter-spacing: 0.5px;
+  line-height: 1;
+}
+
+.rsvp-progress-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.78rem;
+  color: var(--ivory);
+  opacity: 0.9;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.rsvp-progress-footer strong {
+  color: var(--gold-light);
+  font-weight: 700;
+}
+
+.rsvp-status-note {
+  color: var(--gold-light);
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+}
+
 /* ===== THE GUEST BOOK POPUP MODAL ===== */
 .guestbook-modal {
   position: fixed; inset: 0; z-index: 10000;
