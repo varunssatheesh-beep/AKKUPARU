@@ -449,8 +449,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
     const totalGuests = data.totalGuests || 0;
     const totalRsvps = data.totalRsvps || 0;
-    const targetCapacity = 2000;
-    const fillPercent = Math.min(Math.max((totalGuests / targetCapacity) * 100, 2), 100);
+    const fillPercent = Math.min(Math.max(totalGuests * 1.5 + 10, 15), 100);
 
     if (totalGuestsEl) totalGuestsEl.textContent = totalGuests.toLocaleString();
     if (totalResponsesEl) totalResponsesEl.textContent = totalRsvps.toLocaleString();
