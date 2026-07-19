@@ -668,27 +668,25 @@
     </div>
 
     <div class="wishes-container reveal">
-      <!-- Live Cloudflare D1 Database RSVP Progress Level Bar -->
+      <!-- Live RSVP Progress Level Bar -->
       <div class="rsvp-progress-card">
         <div class="rsvp-progress-header">
           <div class="rsvp-progress-title">
-            <span class="rsvp-live-badge">🔴 LIVE D1 SYNC</span>
+            <span class="rsvp-live-badge">🔴 LIVE VARUN DATABASE</span>
             <h3>Guest Attendance Progress</h3>
           </div>
           <div class="rsvp-progress-stats">
-            <span id="rsvpTotalGuests">0</span> / <span id="rsvpTargetCapacity">250</span> Confirmed Guests
+            <span id="rsvpTotalGuests">0</span> Confirmed Guests
           </div>
         </div>
         
         <div class="rsvp-progress-bar-container">
-          <div class="rsvp-progress-bar-fill" id="rsvpProgressBarFill" style="width: 0%;">
-            <span class="rsvp-progress-percent" id="rsvpProgressPercent">0%</span>
-          </div>
+          <div class="rsvp-progress-bar-fill" id="rsvpProgressBarFill" style="width: 0%;"></div>
         </div>
 
         <div class="rsvp-progress-footer">
           <span>💌 Total RSVPs Received: <strong id="rsvpTotalResponses">0</strong></span>
-          <span class="rsvp-status-note">⚡ Real-time Cloudflare Database</span>
+          <span class="rsvp-status-note">⚡ Realtime Varun Data Sync</span>
         </div>
       </div>
 
@@ -722,14 +720,6 @@
                 <option value="Both">Both (Oct 24 &amp; 25)</option>
                 <option value="Reception">Reception (Oct 24)</option>
                 <option value="Wedding">Wedding / Feast (Oct 25)</option>
-              </select>
-            </div>
-
-            <div class="form-group" style="margin-bottom:0; grid-column: 1 / -1;">
-              <label for="rsvp-food">Food Preference</label>
-              <select id="rsvp-food" style="width:100%; padding:14px 18px; border:1.5px solid var(--glass-border); border-radius:12px; background:var(--ivory-dark); color:var(--charcoal); outline:none;">
-                <option value="Veg">Vegetarian Feast 🌿</option>
-                <option value="Non-Veg">Non-Vegetarian Feast 🍗</option>
               </select>
             </div>
           </div>

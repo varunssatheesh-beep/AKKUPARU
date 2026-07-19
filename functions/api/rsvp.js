@@ -22,10 +22,8 @@ export async function onRequestGet(context) {
   if (!env.DB) {
     // Fallback if D1 is not bound
     return new Response(JSON.stringify({
-      totalRsvps: 12,
-      totalGuests: 34,
-      targetCapacity: 250,
-      percentage: 14
+      totalRsvps: 14,
+      totalGuests: 42
     }), {
       status: 200,
       headers: corsHeaders
@@ -52,14 +50,10 @@ export async function onRequestGet(context) {
 
     const totalRsvps = stats?.total_rsvps || 0;
     const totalGuests = stats?.total_guests || 0;
-    const targetCapacity = 250;
-    const percentage = Math.min(Math.round((totalGuests / targetCapacity) * 100), 100);
 
     return new Response(JSON.stringify({
       totalRsvps,
-      totalGuests,
-      targetCapacity,
-      percentage
+      totalGuests
     }), {
       status: 200,
       headers: corsHeaders

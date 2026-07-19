@@ -434,33 +434,28 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const data = await response.json();
         updateProgressBar(data);
       } else {
-        updateProgressBar({ totalRsvps: 14, totalGuests: 42, targetCapacity: 250, percentage: 17 });
+        updateProgressBar({ totalRsvps: 14, totalGuests: 42 });
       }
     } catch (err) {
       console.log("Using initial RSVP progress stats:", err);
-      updateProgressBar({ totalRsvps: 14, totalGuests: 42, targetCapacity: 250, percentage: 17 });
+      updateProgressBar({ totalRsvps: 14, totalGuests: 42 });
     }
   }
 
   function updateProgressBar(data) {
     const totalGuestsEl = document.getElementById('rsvpTotalGuests');
-    const targetCapacityEl = document.getElementById('rsvpTargetCapacity');
     const totalResponsesEl = document.getElementById('rsvpTotalResponses');
     const progressFillEl = document.getElementById('rsvpProgressBarFill');
-    const percentEl = document.getElementById('rsvpProgressPercent');
 
     const totalGuests = data.totalGuests || 0;
-    const targetCapacity = data.targetCapacity || 250;
     const totalRsvps = data.totalRsvps || 0;
-    const percentage = data.percentage !== undefined ? data.percentage : Math.min(Math.round((totalGuests / targetCapacity) * 100), 100);
+    const fillPercent = Math.min(Math.max(totalGuests * 2.5, 12), 100);
 
     if (totalGuestsEl) totalGuestsEl.textContent = totalGuests;
-    if (targetCapacityEl) targetCapacityEl.textContent = targetCapacity;
     if (totalResponsesEl) totalResponsesEl.textContent = totalRsvps;
-    if (percentEl) percentEl.textContent = percentage + '%';
     if (progressFillEl) {
       setTimeout(() => {
-        progressFillEl.style.width = Math.max(percentage, 5) + '%';
+        progressFillEl.style.width = fillPercent + '%';
       }, 200);
     }
   }
@@ -473,7 +468,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       const phoneVal = document.getElementById('rsvp-phone').value.trim();
       const attendeesVal = document.getElementById('rsvp-attendees').value;
       const eventsVal = document.getElementById('rsvp-events').value;
-      const foodVal = document.getElementById('rsvp-food').value;
 
       if (!nameVal) return;
 
@@ -490,8 +484,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             name: nameVal,
             phone: phoneVal,
             attendees: attendeesVal,
-            events: eventsVal,
-            food: foodVal
+            events: eventsVal
           })
         });
 

@@ -123,21 +123,21 @@ h1, h2, h3, .font-serif {
   color: var(--royal-blue); font-size: 1.8rem; cursor: pointer;
 }
 
-/* ===== CREATOR SCROLLING ANNOUNCEMENT TICKER (Just Below Navigation Bar) ===== */
+/* ===== CREATOR SCROLLING ANNOUNCEMENT TICKER (Top Banner - 1 Pass & Disappear) ===== */
 .creator-announcement-ticker {
   position: fixed;
-  top: 75px;
+  top: 0;
   left: 0;
   width: 100%;
-  z-index: 999;
-  background: rgba(11, 27, 61, 0.94);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(201, 169, 97, 0.5);
-  padding: 8px 0;
+  z-index: 10005;
+  background: rgba(11, 27, 61, 0.96);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 2px solid var(--gold);
+  padding: 10px 0;
   overflow: hidden;
   white-space: nowrap;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
   transition: opacity 0.8s ease, visibility 0.8s ease;
   pointer-events: auto;
 }
@@ -1293,8 +1293,8 @@ h1, h2, h3, .font-serif {
   .carousel-control { display: none !important; }
   
   .creator-announcement-ticker {
-    top: 48px;
-    padding: 6px 0;
+    top: 0;
+    padding: 7px 0;
   }
   .creator-ticker-track span {
     font-size: 0.72rem;
