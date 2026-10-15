@@ -687,9 +687,9 @@ window.handleGoogleCalendar = function(e) {
 
 // ===== SAVE THE DATE GALLERY & LIGHTBOX =====
 const STD_PHOTOS = [
-  { src: 'images/savethedate/save1.jpg', caption: 'Save The Date • Dr. Varsha S & Akhil P J' },
-  { src: 'images/savethedate/save2.jpg', caption: 'Save The Date • Pure Harmony & Love' },
-  { src: 'images/savethedate/save3.jpg', caption: 'Save The Date • Bound by Stars' }
+  { src: 'images/savethedate/save1.jpg?v=portrait', caption: 'Save The Date • Dr. Varsha S & Akhil P J' },
+  { src: 'images/savethedate/save2.jpg?v=portrait', caption: 'Save The Date • Pure Harmony & Love' },
+  { src: 'images/savethedate/save3.jpg?v=portrait', caption: 'Save The Date • Bound by Stars' }
 ];
 
 let currentStdIndex = 0;
