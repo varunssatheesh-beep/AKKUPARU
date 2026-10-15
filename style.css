@@ -1320,3 +1320,679 @@ h1, h2, h3, .font-serif {
   .footer-names { flex-direction: column; gap: 6px; }
   .footer-name { font-size: 1.5rem; }
 }
+
+/* ===== MEGA COUNTDOWN & HERO CALENDAR ===== */
+.mega-countdown-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.mega-countdown-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, rgba(201, 169, 97, 0.25) 0%, rgba(240, 208, 128, 0.38) 50%, rgba(201, 169, 97, 0.25) 100%);
+  border: 1.5px solid var(--gold);
+  border-radius: 50px;
+  padding: 8px 24px;
+  margin-bottom: 18px;
+  box-shadow: 0 0 25px rgba(201, 169, 97, 0.4), inset 0 0 15px rgba(255, 253, 249, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: megaPulseGlow 2.5s infinite ease-in-out;
+}
+
+@keyframes megaPulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(201, 169, 97, 0.35);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 0 35px rgba(240, 208, 128, 0.7);
+  }
+}
+
+.mega-badge-sparkle {
+  font-size: 1.1rem;
+  animation: sparkleTwinkle 1.8s infinite ease-in-out;
+}
+
+@keyframes sparkleTwinkle {
+  0%, 100% { opacity: 0.7; transform: rotate(0deg) scale(0.9); }
+  50% { opacity: 1; transform: rotate(18deg) scale(1.2); }
+}
+
+.mega-days-text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: clamp(0.9rem, 2.2vw, 1.25rem);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ivory);
+  text-shadow: 0 0 10px rgba(201, 169, 97, 0.6);
+}
+
+.hero-cal-wrapper {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-cal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, rgba(255, 253, 249, 0.95), rgba(245, 240, 230, 0.9));
+  color: var(--royal-blue);
+  border: 1.5px solid var(--gold);
+  border-radius: 50px;
+  padding: 10px 22px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25), 0 0 15px rgba(201, 169, 97, 0.3);
+  transition: var(--transition);
+}
+
+.hero-cal-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  background: var(--gold);
+  color: var(--royal-blue);
+  box-shadow: 0 12px 30px rgba(201, 169, 97, 0.5);
+}
+
+.cal-btn-icon {
+  font-size: 1rem;
+}
+
+.cal-btn-pill {
+  background: var(--royal-blue);
+  color: var(--ivory);
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Event Card Calendar Buttons */
+.event-cal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
+  background: rgba(11, 27, 61, 0.05);
+  color: var(--royal-blue);
+  border: 1.2px solid rgba(11, 27, 61, 0.2);
+  border-radius: 9999px;
+  padding: 8px 16px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.event-cal-btn:hover {
+  background: var(--royal-blue);
+  color: var(--ivory);
+  border-color: var(--royal-blue);
+}
+
+.event-cal-btn.gold-cal-btn {
+  background: rgba(201, 169, 97, 0.12);
+  border-color: var(--gold);
+  color: var(--royal-blue);
+}
+
+.event-cal-btn.gold-cal-btn:hover {
+  background: var(--gold);
+  color: var(--royal-blue);
+}
+
+/* Pre-wedding Event Additions */
+.pre-wedding-card.pre-wedding-highlight {
+  border-color: var(--gold);
+  box-shadow: 0 12px 35px rgba(201, 169, 97, 0.2);
+  background: linear-gradient(180deg, rgba(255, 253, 249, 0.95), rgba(255, 248, 235, 0.9));
+}
+
+.pre-massive-date {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 2.2rem;
+  color: var(--gold);
+  line-height: 1;
+  margin: 6px 0 10px;
+}
+
+.pre-event-type-badge {
+  display: inline-block;
+  background: rgba(201, 169, 97, 0.15);
+  color: #8c6f2d;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.pre-event-venue {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--royal-blue);
+  margin-bottom: 12px;
+}
+
+.pre-cal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--royal-blue);
+  border: none;
+  border-radius: 9999px;
+  padding: 9px 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(201, 169, 97, 0.35);
+}
+
+.pre-cal-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(201, 169, 97, 0.5);
+}
+
+/* ===== SAVE THE DATE SECTION ===== */
+.section-savethedate {
+  background: linear-gradient(180deg, #fffdf9 0%, #faf5ea 50%, #fffdf9 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.std-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.std-hero-card {
+  text-align: center;
+  background: var(--glass-surface);
+  border: 1.8px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 40px 24px;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-soft), 0 0 25px rgba(201, 169, 97, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.std-foil-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--gold), #f5e4ba);
+  color: var(--royal-blue);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 30px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(201, 169, 97, 0.3);
+}
+
+.std-couple-names {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  color: var(--royal-blue);
+  margin-bottom: 8px;
+}
+
+.std-date-line {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.std-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--charcoal);
+  opacity: 0.85;
+  margin-bottom: 22px;
+}
+
+.std-cta-bar {
+  display: flex;
+  justify-content: center;
+}
+
+.std-cal-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--royal-blue);
+  color: var(--ivory);
+  border: 1.5px solid var(--gold);
+  border-radius: 50px;
+  padding: 12px 28px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(11, 27, 61, 0.25);
+  transition: var(--transition);
+}
+
+.std-cal-action-btn:hover {
+  background: var(--gold);
+  color: var(--royal-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(201, 169, 97, 0.45);
+}
+
+/* Save The Date Photo Grid (Polaroid & Editorial Look) */
+.std-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+.std-photo-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 14px 14px 18px;
+  box-shadow: 0 12px 35px rgba(11, 27, 61, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+  border: 1.2px solid rgba(201, 169, 97, 0.25);
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.std-photo-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 45px rgba(11, 27, 61, 0.16), 0 0 20px rgba(201, 169, 97, 0.3);
+  border-color: var(--gold);
+}
+
+.std-photo-card.std-feature {
+  grid-column: span 1;
+}
+
+.std-photo-inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #0b1b3d;
+}
+
+.std-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.std-photo-card:hover .std-img {
+  transform: scale(1.06);
+}
+
+.std-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(11, 27, 61, 0.85) 0%, rgba(11, 27, 61, 0.2) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.std-photo-card:hover .std-photo-overlay {
+  opacity: 1;
+}
+
+.std-zoom-icon {
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.std-photo-caption {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--ivory);
+  font-weight: 700;
+}
+
+.std-card-footer {
+  padding-top: 12px;
+  text-align: center;
+}
+
+.std-polaroid-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--royal-blue);
+  letter-spacing: 0.5px;
+}
+
+.std-folder-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 35px;
+  padding: 14px 20px;
+  background: rgba(201, 169, 97, 0.08);
+  border: 1.2px dashed var(--gold);
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.78rem;
+  color: var(--charcoal);
+}
+
+.std-folder-hint code {
+  background: rgba(11, 27, 61, 0.08);
+  color: var(--royal-blue);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+/* ===== CALENDAR MODAL STYLES ===== */
+.cal-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 27, 61, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.cal-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cal-modal-card {
+  background: #ffffff;
+  border: 2px solid var(--gold);
+  border-radius: 20px;
+  max-width: 480px;
+  width: 100%;
+  padding: 32px 28px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(201, 169, 97, 0.3);
+  position: relative;
+  transform: scale(0.92);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cal-modal-overlay.active .cal-modal-card {
+  transform: scale(1);
+}
+
+.cal-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background: rgba(11, 27, 61, 0.06);
+  border: none;
+  font-size: 1.1rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--charcoal);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.cal-modal-close:hover {
+  background: var(--royal-blue);
+  color: var(--ivory);
+}
+
+.cal-modal-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.cal-modal-icon {
+  font-size: 2.2rem;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.cal-modal-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45rem;
+  color: var(--royal-blue);
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.cal-modal-header p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  color: var(--charcoal);
+  opacity: 0.8;
+}
+
+.cal-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cal-option-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(11, 27, 61, 0.1);
+  background: #fdfdfd;
+  color: var(--royal-blue);
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: 'Poppins', sans-serif;
+  text-align: left;
+  width: 100%;
+}
+
+.cal-option-btn:hover {
+  border-color: var(--gold);
+  background: rgba(201, 169, 97, 0.08);
+  transform: translateX(4px);
+}
+
+.cal-opt-icon {
+  font-size: 1.5rem;
+}
+
+.cal-opt-text {
+  flex-grow: 1;
+}
+
+.cal-opt-text strong {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--royal-blue);
+}
+
+.cal-opt-text small {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--charcoal);
+  opacity: 0.75;
+}
+
+.cal-opt-arrow {
+  font-size: 1rem;
+  color: var(--gold);
+}
+
+/* ===== SAVE THE DATE LIGHTBOX STYLES ===== */
+.std-lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 27, 61, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 100001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.std-lightbox-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.std-lightbox-content {
+  position: relative;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.std-lightbox-close {
+  position: absolute;
+  top: -45px;
+  right: 0;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--gold);
+  color: var(--ivory);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.std-lightbox-close:hover {
+  background: var(--gold);
+  color: var(--royal-blue);
+}
+
+.std-lightbox-img-wrapper {
+  max-width: 100%;
+  max-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 2px solid var(--gold);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+  background: #000000;
+}
+
+.std-lightbox-img-wrapper img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  transition: opacity 0.2s ease;
+}
+
+.std-lightbox-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 16px;
+  padding: 0 10px;
+}
+
+.std-lightbox-nav {
+  background: rgba(201, 169, 97, 0.25);
+  color: var(--ivory);
+  border: 1.2px solid var(--gold);
+  border-radius: 30px;
+  padding: 6px 16px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.std-lightbox-nav:hover {
+  background: var(--gold);
+  color: var(--royal-blue);
+}
+
+.std-lightbox-caption {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: var(--ivory);
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .std-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+  .std-photo-inner {
+    aspect-ratio: 1 / 1;
+  }
+}
+

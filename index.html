@@ -33,6 +33,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#hero">Home</a></li>
       <li><a href="#couple">Couple</a></li>
+      <li><a href="#savethedate">Save The Date</a></li>
       <li><a href="#pre-wedding">Pre-Wedding</a></li>
       <li><a href="#events">Ceremonies</a></li>
       <li><a href="#love-journey">Our Journey</a></li>
@@ -71,28 +72,44 @@
 
       <p class="sanskrit-blessing">ॐ श्री गणेशाय नमः</p>
 
-      <!-- Monumental Countdown Timer in gold with a pulsing celestial glow -->
-      <div class="countdown-wrapper temple-hero-countdown">
-        <div class="countdown" id="countdown">
-          <div class="count-block-text">
-            <span id="cd-days">00</span>
-            <label>DAYS</label>
+      <!-- Mega Countdown Timer with 10 Days to Go Banner & Calendar Action -->
+      <div class="mega-countdown-container">
+        <div class="mega-countdown-badge" id="megaCountdownBadge">
+          <span class="mega-badge-sparkle">✨</span>
+          <span class="mega-days-text" id="megaDaysToGoText">10 DAYS TO GO!</span>
+          <span class="mega-badge-sparkle">✨</span>
+        </div>
+
+        <div class="countdown-wrapper temple-hero-countdown">
+          <div class="countdown" id="countdown">
+            <div class="count-block-text">
+              <span id="cd-days">10</span>
+              <label>DAYS</label>
+            </div>
+            <div class="count-sep-text">:</div>
+            <div class="count-block-text">
+              <span id="cd-hours">00</span>
+              <label>HOURS</label>
+            </div>
+            <div class="count-sep-text">:</div>
+            <div class="count-block-text">
+              <span id="cd-mins">00</span>
+              <label>MINUTES</label>
+            </div>
+            <div class="count-sep-text">:</div>
+            <div class="count-block-text">
+              <span id="cd-secs">00</span>
+              <label>SECONDS</label>
+            </div>
           </div>
-          <div class="count-sep-text">:</div>
-          <div class="count-block-text">
-            <span id="cd-hours">00</span>
-            <label>HOURS</label>
-          </div>
-          <div class="count-sep-text">:</div>
-          <div class="count-block-text">
-            <span id="cd-mins">00</span>
-            <label>MINUTES</label>
-          </div>
-          <div class="count-sep-text">:</div>
-          <div class="count-block-text">
-            <span id="cd-secs">00</span>
-            <label>SECONDS</label>
-          </div>
+        </div>
+
+        <!-- Add to Calendar Action -->
+        <div class="hero-cal-wrapper">
+          <button type="button" class="hero-cal-btn" onclick="openCalendarModal('wedding')" aria-label="Add wedding to calendar">
+            <span class="cal-btn-icon">📅</span> Add Wedding to Calendar
+            <span class="cal-btn-pill">Remind Me</span>
+          </button>
         </div>
       </div>
 
@@ -180,45 +197,173 @@
     </div>
   </section>
 
-  <!-- ===== PRE-WEDDING EVENTS SECTION (Special Invitees Only) ===== -->
+  <!-- ===== SAVE THE DATE SHOWCASE ===== -->
+  <section id="savethedate" class="section section-savethedate">
+    <div class="section-header">
+      <div class="lotus-divider">🪷</div>
+      <h2 class="section-title">Save The Date</h2>
+      <p class="section-sub">October 25, 2026 • Two Hearts, One Eternal Promise</p>
+    </div>
+
+    <div class="std-container reveal">
+      <!-- Romantic Hero Banner with Gold Foil Border -->
+      <div class="std-hero-card">
+        <div class="std-foil-badge">✨ Official Save The Date ✨</div>
+        <h3 class="std-couple-names">Dr. Varsha S &amp; Akhil P J</h3>
+        <p class="std-date-line">Sunday, October 25, 2026 • Thiruvananthapuram</p>
+        <p class="std-quote">"Two souls with but a single thought, two hearts that beat as one."</p>
+        <div class="std-cta-bar">
+          <button type="button" class="std-cal-action-btn" onclick="openCalendarModal('wedding')">
+            <span class="btn-icon">📅</span> Save Wedding Date to Calendar
+          </button>
+        </div>
+      </div>
+
+      <!-- Creative Photo Grid / Showcase with Polaroid & Cinematic Frames -->
+      <div class="std-gallery-wrapper">
+        <div class="std-gallery-grid" id="stdGalleryGrid">
+          <!-- Photo 1 (Feature Portrait) -->
+          <div class="std-photo-card std-feature" onclick="openStdLightbox('images/savethedate/save1.jpg', 'Save The Date • Dr. Varsha S & Akhil P J')">
+            <div class="std-photo-inner">
+              <img src="images/savethedate/save1.jpg" alt="Save The Date - Varsha & Akhil" class="std-img" onerror="handleStdImgError(this, 1)" />
+              <div class="std-photo-overlay">
+                <span class="std-zoom-icon">🔍</span>
+                <span class="std-photo-caption">Dr. Varsha &amp; Akhil</span>
+              </div>
+            </div>
+            <div class="std-card-footer">
+              <span class="std-polaroid-note">Together in Love 🪷</span>
+            </div>
+          </div>
+
+          <!-- Photo 2 -->
+          <div class="std-photo-card" onclick="openStdLightbox('images/savethedate/save2.jpg', 'Save The Date • Cherished Moments')">
+            <div class="std-photo-inner">
+              <img src="images/savethedate/save2.jpg" alt="Save The Date Moment" class="std-img" onerror="handleStdImgError(this, 2)" />
+              <div class="std-photo-overlay">
+                <span class="std-zoom-icon">🔍</span>
+                <span class="std-photo-caption">Cherished Moments</span>
+              </div>
+            </div>
+            <div class="std-card-footer">
+              <span class="std-polaroid-note">Pure Harmony ✨</span>
+            </div>
+          </div>
+
+          <!-- Photo 3 -->
+          <div class="std-photo-card" onclick="openStdLightbox('images/savethedate/save3.jpg', 'Save The Date • Bound by Stars')">
+            <div class="std-photo-inner">
+              <img src="images/savethedate/save3.jpg" alt="Save The Date Moment" class="std-img" onerror="handleStdImgError(this, 3)" />
+              <div class="std-photo-overlay">
+                <span class="std-zoom-icon">🔍</span>
+                <span class="std-photo-caption">Bound by Stars</span>
+              </div>
+            </div>
+            <div class="std-card-footer">
+              <span class="std-polaroid-note">Destined Forever 💕</span>
+            </div>
+          </div>
+
+          <!-- Photo 4 -->
+          <div class="std-photo-card" onclick="openStdLightbox('images/savethedate/save4.jpg', 'Save The Date • Stepping into Forever')">
+            <div class="std-photo-inner">
+              <img src="images/savethedate/save4.jpg" alt="Save The Date Moment" class="std-img" onerror="handleStdImgError(this, 4)" />
+              <div class="std-photo-overlay">
+                <span class="std-zoom-icon">🔍</span>
+                <span class="std-photo-caption">Stepping into Forever</span>
+              </div>
+            </div>
+            <div class="std-card-footer">
+              <span class="std-polaroid-note">Sacred Promises 🪔</span>
+            </div>
+          </div>
+
+          <!-- Photo 5 -->
+          <div class="std-photo-card" onclick="openStdLightbox('images/savethedate/save5.jpg', 'Save The Date • Radiant Smiles')">
+            <div class="std-photo-inner">
+              <img src="images/savethedate/save5.jpg" alt="Save The Date Moment" class="std-img" onerror="handleStdImgError(this, 5)" />
+              <div class="std-photo-overlay">
+                <span class="std-zoom-icon">🔍</span>
+                <span class="std-photo-caption">Radiant Smiles</span>
+              </div>
+            </div>
+            <div class="std-card-footer">
+              <span class="std-polaroid-note">Joy &amp; Laughter 🌸</span>
+            </div>
+          </div>
+
+          <!-- Photo 6 -->
+          <div class="std-photo-card" onclick="openStdLightbox('images/savethedate/save6.jpg', 'Save The Date • Two Souls United')">
+            <div class="std-photo-inner">
+              <img src="images/savethedate/save6.jpg" alt="Save The Date Moment" class="std-img" onerror="handleStdImgError(this, 6)" />
+              <div class="std-photo-overlay">
+                <span class="std-zoom-icon">🔍</span>
+                <span class="std-photo-caption">Two Souls United</span>
+              </div>
+            </div>
+            <div class="std-card-footer">
+              <span class="std-polaroid-note">Endless Love ♾️</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Upload Guidance Banner -->
+      <div class="std-folder-hint" id="stdFolderHint">
+        <span class="hint-icon">📸</span>
+        <span>Save The Date Photos Folder: <code>images/savethedate/</code> (named <code>save1.jpg</code>, <code>save2.jpg</code>, etc.)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRE-WEDDING EVENTS SECTION (Special Guests Only) ===== -->
   <section id="pre-wedding" class="section section-prewedding">
     <div class="section-header">
       <div class="lotus-divider">🪷</div>
       <h2 class="section-title">Pre-Wedding Celebrations</h2>
-      <p class="section-sub">Private Sacred Ceremonies</p>
+      <p class="section-sub">Private Sacred Ceremonies &amp; Intimate Gatherings</p>
     </div>
     
     <div class="pre-wedding-grid">
-      <!-- Haldi & Mehendi coming soon card -->
-      <div class="pre-wedding-card reveal">
-        <div class="pre-card-badge">Special Invitees Only</div>
-        <div class="pre-card-icon">🌿</div>
-        <h3 class="pre-card-title">Haldi &amp; Mehendi</h3>
-        <p class="pre-card-text">Traditional turmeric paste ceremony and intricate henna design celebration for the bride.</p>
+      <!-- 1. Haldi & Sangeeth (Confirmed Event) -->
+      <div class="pre-wedding-card pre-wedding-highlight reveal">
+        <div class="pre-card-badge">Special Guests Only</div>
+        <div class="pre-card-icon">🌿 🪔 💃</div>
+        <div class="pre-massive-date highlighted-date-gold">OCT 20</div>
+        <h3 class="pre-card-title">Haldi &amp; Sangeeth</h3>
+        <div class="pre-event-type-badge">Intimate Event</div>
+        <p class="pre-event-venue">📍 Kottaram Banquet Hall</p>
+        <p class="pre-card-text">A vibrant and joyous pre-wedding celebration uniting sacred turmeric blessings, melodious sangeeth tunes, laughter, and dance with close family &amp; special guests.</p>
         <div class="pre-card-footer">
-          <span class="pre-status">To Be Announced</span>
+          <button type="button" class="pre-cal-btn" onclick="openCalendarModal('haldi')">📅 Remind Me</button>
         </div>
       </div>
 
-      <!-- Sangeet coming soon card -->
+      <!-- 2. Mehendi Rituals -->
       <div class="pre-wedding-card reveal">
-        <div class="pre-card-badge">Special Invitees Only</div>
-        <div class="pre-card-icon">💃</div>
-        <h3 class="pre-card-title">Sangeet &amp; Dance</h3>
-        <p class="pre-card-text">An evening of music, dance, and celebration with close family members and friends.</p>
+        <div class="pre-card-badge">Special Guests Only</div>
+        <div class="pre-card-icon">✨ 🌸</div>
+        <div class="pre-massive-date">OCT 2026</div>
+        <h3 class="pre-card-title">Mehendi &amp; Rituals</h3>
+        <div class="pre-event-type-badge">Family Gathering</div>
+        <p class="pre-event-venue">📍 Private Residence</p>
+        <p class="pre-card-text">Intricate henna adornment and traditional rituals accompanied by family blessings, celebrating timeless custom and auspicious beginnings.</p>
         <div class="pre-card-footer">
-          <span class="pre-status">To Be Announced</span>
+          <span class="pre-status">Intimate Family Event</span>
         </div>
       </div>
 
-      <!-- Bride to be party coming soon card -->
+      <!-- 3. Bride-to-Be Party -->
       <div class="pre-wedding-card reveal">
-        <div class="pre-card-badge">Special Invitees Only</div>
-        <div class="pre-card-icon">🥂</div>
+        <div class="pre-card-badge">Special Guests Only</div>
+        <div class="pre-card-icon">🥂 ✨</div>
+        <div class="pre-massive-date">OCT 2026</div>
         <h3 class="pre-card-title">Bride-to-Be Party</h3>
-        <p class="pre-card-text">A private celebration to shower our beautiful bride with blessings and laughter.</p>
+        <div class="pre-event-type-badge">Special Gathering</div>
+        <p class="pre-event-venue">📍 Private Gathering</p>
+        <p class="pre-card-text">A private celebration to shower our radiant bride Dr. Varsha with boundless love, laughter, and cherished memories before the grand ceremonies.</p>
         <div class="pre-card-footer">
-          <span class="pre-status">To Be Announced</span>
+          <span class="pre-status">Special Invitees</span>
         </div>
       </div>
     </div>
@@ -253,6 +398,7 @@
             </div>
             <div class="card-actions-block">
               <a href="https://maps.app.goo.gl/YhMqnr7tsKcxkpPFA" target="_blank" class="event-map-btn">🗺️ Navigate Location</a>
+              <button type="button" class="event-cal-btn" onclick="openCalendarModal('reception')">📅 Add to Calendar</button>
             </div>
           </div>
 
@@ -291,6 +437,7 @@
             </div>
             <div class="card-actions-block">
               <a href="https://maps.app.goo.gl/YhMqnr7tsKcxkpPFA" target="_blank" class="event-map-btn gold-btn">🗺️ Navigate Location</a>
+              <button type="button" class="event-cal-btn gold-cal-btn" onclick="openCalendarModal('wedding')">📅 Add to Calendar</button>
             </div>
           </div>
 
@@ -853,6 +1000,67 @@
     </p>
   </footer>
 
-  <script src="script.js?v=20"></script>
+  <!-- ===== CALENDAR REMINDER MODAL ===== -->
+  <div class="cal-modal-overlay" id="calModalOverlay" onclick="closeCalModal(event)">
+    <div class="cal-modal-card" onclick="event.stopPropagation()">
+      <button type="button" class="cal-modal-close" onclick="closeCalModal()" aria-label="Close modal">✕</button>
+      <div class="cal-modal-header">
+        <span class="cal-modal-icon">📅</span>
+        <h3 id="calModalTitle">Add to Calendar</h3>
+        <p id="calModalSubtitle">Choose your preferred calendar application</p>
+      </div>
+      <div class="cal-modal-body">
+        <a href="#" id="calGoogleLink" target="_blank" rel="noopener noreferrer" class="cal-option-btn google-cal">
+          <span class="cal-opt-icon">🌐</span>
+          <div class="cal-opt-text">
+            <strong>Google Calendar</strong>
+            <small>Opens in browser / Google Calendar App</small>
+          </div>
+          <span class="cal-opt-arrow">➔</span>
+        </a>
+        <button type="button" id="calAppleBtn" class="cal-option-btn apple-cal" onclick="handleAppleCalendar()">
+          <span class="cal-opt-icon">🍎</span>
+          <div class="cal-opt-text">
+            <strong>Apple Calendar / iPhone / Mac</strong>
+            <small>Download .ics (Instant sync on iPhone &amp; Mac)</small>
+          </div>
+          <span class="cal-opt-arrow">➔</span>
+        </button>
+        <button type="button" id="calOutlookBtn" class="cal-option-btn outlook-cal" onclick="handleAppleCalendar()">
+          <span class="cal-opt-icon">✉️</span>
+          <div class="cal-opt-text">
+            <strong>Outlook / Office 365</strong>
+            <small>Standard iCalendar file (.ics)</small>
+          </div>
+          <span class="cal-opt-arrow">➔</span>
+        </button>
+        <a href="#" id="calYahooLink" target="_blank" rel="noopener noreferrer" class="cal-option-btn yahoo-cal">
+          <span class="cal-opt-icon">⚡</span>
+          <div class="cal-opt-text">
+            <strong>Yahoo Calendar</strong>
+            <small>Opens Yahoo Calendar</small>
+          </div>
+          <span class="cal-opt-arrow">➔</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SAVE THE DATE LIGHTBOX MODAL ===== -->
+  <div class="std-lightbox-overlay" id="stdLightbox" onclick="closeStdLightbox(event)">
+    <div class="std-lightbox-content" onclick="event.stopPropagation()">
+      <button type="button" class="std-lightbox-close" onclick="closeStdLightbox()" aria-label="Close photo view">✕</button>
+      <div class="std-lightbox-img-wrapper">
+        <img id="stdLightboxImg" src="" alt="Save The Date Photo" />
+      </div>
+      <div class="std-lightbox-bar">
+        <button type="button" class="std-lightbox-nav" id="stdLightboxPrev" onclick="navigateStdLightbox(-1)">‹ Prev</button>
+        <p id="stdLightboxCaption" class="std-lightbox-caption"></p>
+        <button type="button" class="std-lightbox-nav" id="stdLightboxNext" onclick="navigateStdLightbox(1)">Next ›</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js?v=21"></script>
 </body>
 </html>

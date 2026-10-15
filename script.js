@@ -44,11 +44,18 @@ function updateCountdown() {
   const now = new Date().getTime();
   const diff = wedding - now;
 
+  const daysToGoEl = document.getElementById('megaDaysToGoText');
+
   if (diff <= 0) {
-    document.getElementById('cd-days').textContent = '00';
-    document.getElementById('cd-hours').textContent = '00';
-    document.getElementById('cd-mins').textContent = '00';
-    document.getElementById('cd-secs').textContent = '00';
+    const d = document.getElementById('cd-days');
+    const h = document.getElementById('cd-hours');
+    const m = document.getElementById('cd-mins');
+    const s = document.getElementById('cd-secs');
+    if (d) d.textContent = '00';
+    if (h) h.textContent = '00';
+    if (m) m.textContent = '00';
+    if (s) s.textContent = '00';
+    if (daysToGoEl) daysToGoEl.textContent = 'TODAY IS THE BIG DAY!';
     return;
   }
   const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -56,10 +63,23 @@ function updateCountdown() {
   const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
   const secs  = Math.floor((diff % (1000 * 60)) / 1000);
 
-  document.getElementById('cd-days').textContent  = String(days).padStart(2,'0');
-  document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
-  document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
-  document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
+  const d = document.getElementById('cd-days');
+  const h = document.getElementById('cd-hours');
+  const m = document.getElementById('cd-mins');
+  const s = document.getElementById('cd-secs');
+  if (d) d.textContent  = String(days).padStart(2,'0');
+  if (h) h.textContent = String(hours).padStart(2,'0');
+  if (m) m.textContent  = String(mins).padStart(2,'0');
+  if (s) s.textContent  = String(secs).padStart(2,'0');
+
+  if (daysToGoEl) {
+    const calendarDaysLeft = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    if (calendarDaysLeft === 1) {
+      daysToGoEl.textContent = '1 DAY TO GO!';
+    } else {
+      daysToGoEl.textContent = `${calendarDaysLeft} DAYS TO GO!`;
+    }
+  }
 }
 updateCountdown();
 setInterval(updateCountdown, 1000);
@@ -547,5 +567,189 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   // Backup timer (24s) in case animationend event isn't fired
   setTimeout(removeTicker, 24000);
 })();
+
+// ===== WEDDING CALENDAR INTEGRATION =====
+const CALENDAR_EVENTS = {
+  wedding: {
+    title: "Grand Wedding: Dr. Varsha S & Akhil P J",
+    description: "Holy Matrimony of Dr. Varsha S and Akhil P J. Divine blessings and grand feast at RDR Convention Centre, Edappazhinji, Thiruvananthapuram. Details: https://akkuparu.varunsatheesh.in",
+    location: "RDR Convention Centre, Edappazhinji, Thiruvananthapuram",
+    start: "20261025T043000Z", // 10:00 AM IST
+    end: "20261025T093000Z"    // 3:00 PM IST
+  },
+  reception: {
+    title: "Bride's Reception: Dr. Varsha S",
+    description: "Wedding Reception of Dr. Varsha S at RDR Convention Centre Mini Hall, Edappazhinji, Thiruvananthapuram. Details: https://akkuparu.varunsatheesh.in",
+    location: "RDR Convention Centre Mini Hall, Edappazhinji, Thiruvananthapuram",
+    start: "20261024T110000Z", // 4:30 PM IST
+    end: "20261024T160000Z"    // 9:30 PM IST
+  },
+  haldi: {
+    title: "Haldi & Sangeeth: Dr. Varsha & Akhil (Special Guests Only)",
+    description: "Intimate Haldi & Sangeeth Celebration at Kottaram Banquet Hall. Details: https://akkuparu.varunsatheesh.in",
+    location: "Kottaram Banquet Hall, Thiruvananthapuram",
+    start: "20261020T113000Z", // 5:00 PM IST
+    end: "20261020T163000Z"    // 10:00 PM IST
+  }
+};
+
+let currentCalEvent = CALENDAR_EVENTS.wedding;
+
+window.openCalendarModal = function(eventType) {
+  currentCalEvent = CALENDAR_EVENTS[eventType] || CALENDAR_EVENTS.wedding;
+  const overlay = document.getElementById('calModalOverlay');
+  const titleEl = document.getElementById('calModalTitle');
+  const subEl = document.getElementById('calModalSubtitle');
+  const googleLink = document.getElementById('calGoogleLink');
+  const yahooLink = document.getElementById('calYahooLink');
+
+  if (titleEl) titleEl.textContent = `Add to Calendar: ${currentCalEvent.title.split(':')[0]}`;
+  if (subEl) subEl.textContent = currentCalEvent.title;
+
+  // Google Calendar URL
+  if (googleLink) {
+    const gUrl = new URL("https://calendar.google.com/calendar/render");
+    gUrl.searchParams.set("action", "TEMPLATE");
+    gUrl.searchParams.set("text", currentCalEvent.title);
+    gUrl.searchParams.set("dates", `${currentCalEvent.start}/${currentCalEvent.end}`);
+    gUrl.searchParams.set("details", currentCalEvent.description);
+    gUrl.searchParams.set("location", currentCalEvent.location);
+    googleLink.href = gUrl.toString();
+  }
+
+  // Yahoo Calendar URL
+  if (yahooLink) {
+    const yUrl = new URL("https://calendar.yahoo.com/");
+    yUrl.searchParams.set("v", "60");
+    yUrl.searchParams.set("view", "d");
+    yUrl.searchParams.set("type", "20");
+    yUrl.searchParams.set("title", currentCalEvent.title);
+    yUrl.searchParams.set("st", currentCalEvent.start);
+    yUrl.searchParams.set("et", currentCalEvent.end);
+    yUrl.searchParams.set("desc", currentCalEvent.description);
+    yUrl.searchParams.set("in_loc", currentCalEvent.location);
+    yahooLink.href = yUrl.toString();
+  }
+
+  if (overlay) {
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+};
+
+window.closeCalModal = function(e) {
+  if (e && e.target && e.target !== e.currentTarget && !e.target.classList.contains('cal-modal-close')) {
+    return;
+  }
+  const overlay = document.getElementById('calModalOverlay');
+  if (overlay) {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+};
+
+window.handleAppleCalendar = function() {
+  const evt = currentCalEvent;
+  const ics = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Varun Satheesh//Akkuparu Wedding//EN",
+    "CALSCALE:GREGORIAN",
+    "METHOD:PUBLISH",
+    "BEGIN:VEVENT",
+    `SUMMARY:${evt.title}`,
+    `DESCRIPTION:${evt.description}`,
+    `LOCATION:${evt.location}`,
+    `DTSTART:${evt.start}`,
+    `DTEND:${evt.end}`,
+    "STATUS:CONFIRMED",
+    "END:VEVENT",
+    "END:VCALENDAR"
+  ].join("\r\n");
+
+  const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${evt.title.replace(/[^a-zA-Z0-9]/g, "_")}.ics`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  window.URL.revokeObjectURL(url);
+};
+
+// ===== SAVE THE DATE GALLERY & LIGHTBOX =====
+const STD_PHOTOS = [
+  { src: 'images/savethedate/save1.jpg', caption: 'Save The Date • Dr. Varsha S & Akhil P J' },
+  { src: 'images/savethedate/save2.jpg', caption: 'Save The Date • Pure Harmony' },
+  { src: 'images/savethedate/save3.jpg', caption: 'Save The Date • Bound by Stars' },
+  { src: 'images/savethedate/save4.jpg', caption: 'Save The Date • Stepping into Forever' },
+  { src: 'images/savethedate/save5.jpg', caption: 'Save The Date • Radiant Smiles' },
+  { src: 'images/savethedate/save6.jpg', caption: 'Save The Date • Two Souls United' }
+];
+
+let currentStdIndex = 0;
+
+window.handleStdImgError = function(imgEl, idx) {
+  imgEl.onerror = null;
+  imgEl.src = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="750" viewBox="0 0 600 750"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%230b1b3d"/><stop offset="100%" stop-color="%231a3668"/></linearGradient></defs><rect width="600" height="750" fill="url(%23g)"/><rect x="25" y="25" width="550" height="700" fill="none" stroke="%23c9a961" stroke-width="2" stroke-dasharray="8 6" rx="16"/><text x="50%" y="42%" font-family="serif" font-size="64" fill="%23c9a961" text-anchor="middle" dominant-baseline="middle">🪷</text><text x="50%" y="52%" font-family="serif" font-size="28" font-weight="bold" fill="%23fffdf9" text-anchor="middle" dominant-baseline="middle">Save The Date %23${idx}</text><text x="50%" y="60%" font-family="sans-serif" font-size="16" fill="%23c9a961" text-anchor="middle" dominant-baseline="middle">Drop save${idx}.jpg in images/savethedate/</text></svg>`;
+};
+
+window.openStdLightbox = function(src, caption) {
+  const overlay = document.getElementById('stdLightbox');
+  const img = document.getElementById('stdLightboxImg');
+  const captionEl = document.getElementById('stdLightboxCaption');
+
+  const foundIdx = STD_PHOTOS.findIndex(p => p.src === src);
+  currentStdIndex = foundIdx >= 0 ? foundIdx : 0;
+
+  if (img) img.src = src;
+  if (captionEl) captionEl.textContent = caption || STD_PHOTOS[currentStdIndex].caption;
+  if (overlay) {
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+};
+
+window.closeStdLightbox = function(e) {
+  if (e && e.target && e.target !== e.currentTarget && !e.target.classList.contains('std-lightbox-close')) {
+    return;
+  }
+  const overlay = document.getElementById('stdLightbox');
+  if (overlay) {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+};
+
+window.navigateStdLightbox = function(dir) {
+  currentStdIndex = (currentStdIndex + dir + STD_PHOTOS.length) % STD_PHOTOS.length;
+  const photo = STD_PHOTOS[currentStdIndex];
+  const img = document.getElementById('stdLightboxImg');
+  const captionEl = document.getElementById('stdLightboxCaption');
+
+  if (img) {
+    img.style.opacity = '0.3';
+    setTimeout(() => {
+      img.src = photo.src;
+      img.style.opacity = '1';
+    }, 150);
+  }
+  if (captionEl) captionEl.textContent = photo.caption;
+};
+
+// Global Keyboard Navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    window.closeCalModal();
+    window.closeStdLightbox();
+  } else if (e.key === 'ArrowLeft') {
+    const stdOverlay = document.getElementById('stdLightbox');
+    if (stdOverlay && stdOverlay.classList.contains('active')) window.navigateStdLightbox(-1);
+  } else if (e.key === 'ArrowRight') {
+    const stdOverlay = document.getElementById('stdLightbox');
+    if (stdOverlay && stdOverlay.classList.contains('active')) window.navigateStdLightbox(1);
+  }
+});
 
 console.log('🪷 Dr. Varsha & Akhil Wedding Site Loaded successfully 🪷');
