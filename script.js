@@ -606,15 +606,12 @@ window.openCalendarModal = function(eventType) {
   if (titleEl) titleEl.textContent = `Add to Calendar: ${currentCalEvent.title.split(':')[0]}`;
   if (subEl) subEl.textContent = currentCalEvent.title;
 
-  // Google Calendar URL
+  // Google Calendar URL (Must preserve literal slash between start and end dates)
   if (googleLink) {
-    const gUrl = new URL("https://calendar.google.com/calendar/render");
-    gUrl.searchParams.set("action", "TEMPLATE");
-    gUrl.searchParams.set("text", currentCalEvent.title);
-    gUrl.searchParams.set("dates", `${currentCalEvent.start}/${currentCalEvent.end}`);
-    gUrl.searchParams.set("details", currentCalEvent.description);
-    gUrl.searchParams.set("location", currentCalEvent.location);
-    googleLink.href = gUrl.toString();
+    const title = encodeURIComponent(currentCalEvent.title);
+    const details = encodeURIComponent(currentCalEvent.description);
+    const loc = encodeURIComponent(currentCalEvent.location);
+    googleLink.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${currentCalEvent.start}/${currentCalEvent.end}&details=${details}&location=${loc}&ctz=Asia/Kolkata`;
   }
 
   // Yahoo Calendar URL
@@ -678,21 +675,28 @@ window.handleAppleCalendar = function() {
   window.URL.revokeObjectURL(url);
 };
 
+window.handleGoogleCalendar = function(e) {
+  if (e) e.preventDefault();
+  const evt = currentCalEvent || CALENDAR_EVENTS.wedding;
+  const title = encodeURIComponent(evt.title);
+  const details = encodeURIComponent(evt.description);
+  const loc = encodeURIComponent(evt.location);
+  const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${evt.start}/${evt.end}&details=${details}&location=${loc}&ctz=Asia/Kolkata`;
+  window.open(url, '_blank', 'noopener,noreferrer');
+};
+
 // ===== SAVE THE DATE GALLERY & LIGHTBOX =====
 const STD_PHOTOS = [
   { src: 'images/savethedate/save1.jpg', caption: 'Save The Date • Dr. Varsha S & Akhil P J' },
-  { src: 'images/savethedate/save2.jpg', caption: 'Save The Date • Pure Harmony' },
-  { src: 'images/savethedate/save3.jpg', caption: 'Save The Date • Bound by Stars' },
-  { src: 'images/savethedate/save4.jpg', caption: 'Save The Date • Stepping into Forever' },
-  { src: 'images/savethedate/save5.jpg', caption: 'Save The Date • Radiant Smiles' },
-  { src: 'images/savethedate/save6.jpg', caption: 'Save The Date • Two Souls United' }
+  { src: 'images/savethedate/save2.jpg', caption: 'Save The Date • Pure Harmony & Love' },
+  { src: 'images/savethedate/save3.jpg', caption: 'Save The Date • Bound by Stars' }
 ];
 
 let currentStdIndex = 0;
 
 window.handleStdImgError = function(imgEl, idx) {
   imgEl.onerror = null;
-  imgEl.src = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="750" viewBox="0 0 600 750"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%230b1b3d"/><stop offset="100%" stop-color="%231a3668"/></linearGradient></defs><rect width="600" height="750" fill="url(%23g)"/><rect x="25" y="25" width="550" height="700" fill="none" stroke="%23c9a961" stroke-width="2" stroke-dasharray="8 6" rx="16"/><text x="50%" y="42%" font-family="serif" font-size="64" fill="%23c9a961" text-anchor="middle" dominant-baseline="middle">🪷</text><text x="50%" y="52%" font-family="serif" font-size="28" font-weight="bold" fill="%23fffdf9" text-anchor="middle" dominant-baseline="middle">Save The Date %23${idx}</text><text x="50%" y="60%" font-family="sans-serif" font-size="16" fill="%23c9a961" text-anchor="middle" dominant-baseline="middle">Drop save${idx}.jpg in images/savethedate/</text></svg>`;
+  imgEl.src = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%230b1b3d"/><stop offset="100%" stop-color="%231a3668"/></linearGradient></defs><rect width="600" height="400" fill="url(%23g)"/><rect x="15" y="15" width="570" height="370" fill="none" stroke="%23c9a961" stroke-width="1.5" rx="10"/><text x="50%" y="45%" font-family="serif" font-size="44" fill="%23c9a961" text-anchor="middle" dominant-baseline="middle">🪷</text><text x="50%" y="65%" font-family="serif" font-size="22" font-weight="bold" fill="%23fffdf9" text-anchor="middle" dominant-baseline="middle">Save The Date</text></svg>`;
 };
 
 window.openStdLightbox = function(src, caption) {

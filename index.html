@@ -222,8 +222,8 @@
       <!-- Creative Photo Grid / Showcase with Polaroid & Cinematic Frames -->
       <div class="std-gallery-wrapper">
         <div class="std-gallery-grid" id="stdGalleryGrid">
-          <!-- Photo 1 (Feature Portrait) -->
-          <div class="std-photo-card std-feature" onclick="openStdLightbox('images/savethedate/save1.jpg', 'Save The Date • Dr. Varsha S & Akhil P J')">
+          <!-- Photo 1 -->
+          <div class="std-photo-card" onclick="openStdLightbox('images/savethedate/save1.jpg', 'Save The Date • Dr. Varsha S & Akhil P J')">
             <div class="std-photo-inner">
               <img src="images/savethedate/save1.jpg" alt="Save The Date - Varsha & Akhil" class="std-img" onerror="handleStdImgError(this, 1)" />
               <div class="std-photo-overlay">
@@ -237,16 +237,16 @@
           </div>
 
           <!-- Photo 2 -->
-          <div class="std-photo-card" onclick="openStdLightbox('images/savethedate/save2.jpg', 'Save The Date • Cherished Moments')">
+          <div class="std-photo-card" onclick="openStdLightbox('images/savethedate/save2.jpg', 'Save The Date • Pure Harmony & Love')">
             <div class="std-photo-inner">
               <img src="images/savethedate/save2.jpg" alt="Save The Date Moment" class="std-img" onerror="handleStdImgError(this, 2)" />
               <div class="std-photo-overlay">
                 <span class="std-zoom-icon">🔍</span>
-                <span class="std-photo-caption">Cherished Moments</span>
+                <span class="std-photo-caption">Pure Harmony</span>
               </div>
             </div>
             <div class="std-card-footer">
-              <span class="std-polaroid-note">Pure Harmony ✨</span>
+              <span class="std-polaroid-note">Destined Forever 💕</span>
             </div>
           </div>
 
@@ -260,58 +260,10 @@
               </div>
             </div>
             <div class="std-card-footer">
-              <span class="std-polaroid-note">Destined Forever 💕</span>
-            </div>
-          </div>
-
-          <!-- Photo 4 -->
-          <div class="std-photo-card" onclick="openStdLightbox('images/savethedate/save4.jpg', 'Save The Date • Stepping into Forever')">
-            <div class="std-photo-inner">
-              <img src="images/savethedate/save4.jpg" alt="Save The Date Moment" class="std-img" onerror="handleStdImgError(this, 4)" />
-              <div class="std-photo-overlay">
-                <span class="std-zoom-icon">🔍</span>
-                <span class="std-photo-caption">Stepping into Forever</span>
-              </div>
-            </div>
-            <div class="std-card-footer">
-              <span class="std-polaroid-note">Sacred Promises 🪔</span>
-            </div>
-          </div>
-
-          <!-- Photo 5 -->
-          <div class="std-photo-card" onclick="openStdLightbox('images/savethedate/save5.jpg', 'Save The Date • Radiant Smiles')">
-            <div class="std-photo-inner">
-              <img src="images/savethedate/save5.jpg" alt="Save The Date Moment" class="std-img" onerror="handleStdImgError(this, 5)" />
-              <div class="std-photo-overlay">
-                <span class="std-zoom-icon">🔍</span>
-                <span class="std-photo-caption">Radiant Smiles</span>
-              </div>
-            </div>
-            <div class="std-card-footer">
-              <span class="std-polaroid-note">Joy &amp; Laughter 🌸</span>
-            </div>
-          </div>
-
-          <!-- Photo 6 -->
-          <div class="std-photo-card" onclick="openStdLightbox('images/savethedate/save6.jpg', 'Save The Date • Two Souls United')">
-            <div class="std-photo-inner">
-              <img src="images/savethedate/save6.jpg" alt="Save The Date Moment" class="std-img" onerror="handleStdImgError(this, 6)" />
-              <div class="std-photo-overlay">
-                <span class="std-zoom-icon">🔍</span>
-                <span class="std-photo-caption">Two Souls United</span>
-              </div>
-            </div>
-            <div class="std-card-footer">
-              <span class="std-polaroid-note">Endless Love ♾️</span>
+              <span class="std-polaroid-note">Eternal Grace ✨</span>
             </div>
           </div>
         </div>
-      </div>
-      
-      <!-- Upload Guidance Banner -->
-      <div class="std-folder-hint" id="stdFolderHint">
-        <span class="hint-icon">📸</span>
-        <span>Save The Date Photos Folder: <code>images/savethedate/</code> (named <code>save1.jpg</code>, <code>save2.jpg</code>, etc.)</span>
       </div>
     </div>
   </section>
@@ -1010,27 +962,27 @@
         <p id="calModalSubtitle">Choose your preferred calendar application</p>
       </div>
       <div class="cal-modal-body">
-        <a href="#" id="calGoogleLink" target="_blank" rel="noopener noreferrer" class="cal-option-btn google-cal">
+        <a href="#" id="calGoogleLink" target="_blank" rel="noopener noreferrer" class="cal-option-btn google-cal" onclick="handleGoogleCalendar(event)">
           <span class="cal-opt-icon">🌐</span>
           <div class="cal-opt-text">
             <strong>Google Calendar</strong>
-            <small>Opens in browser / Google Calendar App</small>
+            <small>Opens Google Calendar (PC &amp; Mobile)</small>
           </div>
           <span class="cal-opt-arrow">➔</span>
         </a>
-        <button type="button" id="calAppleBtn" class="cal-option-btn apple-cal" onclick="handleAppleCalendar()">
-          <span class="cal-opt-icon">🍎</span>
+        <button type="button" id="calOutlookBtn" class="cal-option-btn outlook-cal" onclick="handleAppleCalendar()">
+          <span class="cal-opt-icon">💻</span>
           <div class="cal-opt-text">
-            <strong>Apple Calendar / iPhone / Mac</strong>
-            <small>Download .ics (Instant sync on iPhone &amp; Mac)</small>
+            <strong>Outlook / Windows Calendar (PC)</strong>
+            <small>Download .ics file (Adds to Outlook / Windows Calendar)</small>
           </div>
           <span class="cal-opt-arrow">➔</span>
         </button>
-        <button type="button" id="calOutlookBtn" class="cal-option-btn outlook-cal" onclick="handleAppleCalendar()">
-          <span class="cal-opt-icon">✉️</span>
+        <button type="button" id="calAppleBtn" class="cal-option-btn apple-cal" onclick="handleAppleCalendar()">
+          <span class="cal-opt-icon">🍎</span>
           <div class="cal-opt-text">
-            <strong>Outlook / Office 365</strong>
-            <small>Standard iCalendar file (.ics)</small>
+            <strong>Apple Calendar (iPhone, iPad &amp; Mac)</strong>
+            <small>Instant sync for Apple devices (.ics)</small>
           </div>
           <span class="cal-opt-arrow">➔</span>
         </button>

@@ -1622,8 +1622,23 @@ h1, h2, h3, .font-serif {
 /* Save The Date Photo Grid (Polaroid & Editorial Look) */
 .std-gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 992px) {
+  .std-gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .std-gallery-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+  }
 }
 
 .std-photo-card {
@@ -1651,7 +1666,7 @@ h1, h2, h3, .font-serif {
 .std-photo-inner {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 2;
   border-radius: 8px;
   overflow: hidden;
   background: #0b1b3d;
