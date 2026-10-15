@@ -1666,7 +1666,7 @@ h1, h2, h3, .font-serif {
 .std-photo-inner {
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 2 / 3;
   border-radius: 8px;
   overflow: hidden;
   background: #0b1b3d;
